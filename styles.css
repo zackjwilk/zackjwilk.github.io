@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 98%;
+    margin: 0 auto;
+    font-size: 18px;
+    font-family: cursive;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: white;
+    padding: 2.5vh;
+    width: 100%;
+    border-bottom: 2px dashed black;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
+
+.contact {
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+}
+
+a {
+    color: gray;
+    padding-right: 1vw;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: blue;
+    text-align: left;
+    margin-left: 1vw;
+}
+
+.bday-countdown {
+    font-size: 18px;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    padding: 1vw;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.left-column {
+    flex: 0.4;
+    padding: 2vh;
+    border-right: 2px dashed black;
+}
+
+.left-column p {
+    margin-bottom: 1vh;
+}
+
+.projects-title {
+    font-size: 22px;
+    color: blue;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    text-align: left;
+}
+
+.scroll-proj {
+    max-height: 35vh;
+    overflow-y: auto;
+    padding-right: 1vw;
+}
+
+.right-column {
+    flex: 1;
+    height: 100%;
+    margin-left: 2vw;
+}
+
+.display {
+    border: 2px dashed black;
+    height: 100%;
+}
+
+.proj-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: blue;
+    margin-left: 1vw;
+}
+
+.scroll-desc {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.proj-desc {
+    margin: 2vw;
+}
+
+button {
+    width: 100%;
+    font-size: 16px;
+    padding: 0.5vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+button:focus {
+    color: blue;
+    font-weight: bold;
+}
+
+.moving-image-container {
+    border: 2px dashed black;
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    margin: 1vw;
+}
+
+.image-container {
+    background-color: black;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0.3vw;
+}
+
+#follow-cursor {
+    height: 75%;
+    transition: transform 0.05s ease-out;
+    z-index: 10;
+    visibility: hidden;
+    outline: solid black;
+    outline-width: 1px;
+}
+
+#face {
+    visibility: hidden;
+    width: 15%;
+}
