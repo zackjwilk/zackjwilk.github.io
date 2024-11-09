@@ -145,7 +145,7 @@ button:focus {
 }
 
 #follow-cursor {
-    height: 90%;
+    height: 100%;
     transition: transform 0.05s ease-out;
     z-index: 10;
     visibility: hidden;
