@@ -7,7 +7,7 @@ const mainContainer = document.querySelector(".main-container");
 const leftColumn = document.querySelector(".left-column");
 const display = document.querySelector(".display");
 
-var style = getComputedStyle(document.body);
+const style = getComputedStyle(document.body);
 const color = style.getPropertyValue("--color");
 
 flashlight.style.outline = `${body.offsetWidth}px solid black`;
@@ -22,6 +22,8 @@ body.addEventListener("mousemove", (event) => {
 
 var mode = "light"
 lightToggle.addEventListener("click", function () {
+    var switchSFX = new Audio("assets/switch.wav");
+    switchSFX.play();
     if (mode == "light") {
         flashlight.style.visibility = "visible";
         lightSwitch.src = "assets/light-off.png";
