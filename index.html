@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zack Wilkinson</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+
+<body>
+    <img src="assets/flashlight.png" alt="shadow" id="flashlight">
+
+    <header class="header">
+        <div class="left-header">
+            <h1>ZACK WILKINSON :)</h1>
+            <h1 class="bday-countdown">BIRTHDAY</h1>
+        </div>
+        <button id="light-toggle">
+            <img src="assets/light-on.png" id="light-switch">
+        </button>
+    </header>
+
+    <main class="main-container">
+        <div class="container">
+            <section class="left-column">
+                <p>
+                    Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science at
+                    Stevens Institute of Technology. I'm interested in gaining experience through
+                    internship opportunities—primarily pertaining to software development, but
+                    I'm open to exploring any opportunities that will broaden my knowledge and better
+                    familiarize me with real-world work environments in the CS field.
+                </p>
+
+                <div class="contact">
+                    <a href="mailto:zackjwilkinson@gmail.com">Email</a>
+                    <a href="https://github.com/zackjwilk" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/zack-wilkinson-589849309/" target="_blank">LinkedIn</a>
+                    <a href="https://www.instagram.com/zackjwilk" target="_blank">Instagram</a>
+                </div>
+
+                <div class="projects">
+                    <h2 class="projects-title">PROJECTS</h2>
+                    <div class="scroll-proj">
+                        <button style="color:blue; font-weight:bold;">spotify-helper</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                        <hr>
+                        <button>I WILL MAKE MORE PROJECTS</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="right-column">
+                <div class="display">
+                    <header>
+                        <a class="proj-name" href="https://github.com/zackjwilk/spotify-helper" target="_blank">spotify-helper</a>
+                    </header>
+
+                    <div class="scroll-desc">
+                        <p class="proj-desc">
+                            spotify-helper offers multiple features to help user automate tasks on Spotify
+                            like adding local files (w/ metadata) and sequencing/organizing playlists.
+                            <br><br>
+                            <b>Functions</b><br><br>
+                            * Local Files Automator *<br>
+                            Spotify Local Files Automator is a Python script that takes user input of a song
+                            title and artist name and/or link to song on SoundCloud and rips the song from
+                            SoundCloud, downloads it, adds metadata (title, artist, cover image), and places
+                            it in the user's specified Spotify local files folder so they can listen to it on
+                            Spotify (useful for unreleased songs or songs that are otherwise not typically
+                            available on Spotify).
+                            <br><br>
+                            * Playlist Sequencer *<br>
+                            Spotify Playlist Sequencer is a Python script that takes user input of their Spotify
+                            User ID and name of one of their playlists and creates a clone of said playlist in a
+                            more comprehensible sequence. The tracks in the new playlist can be sequenced in
+                            symmetrical (increasing until a maximum and then decreasing back down until the end
+                            of the playlist), ascending, or descending order based on a selected audio feature
+                            (energy, danceability, tempo, etc.).
+                            <br><br>
+                            * Subplaylist Maker / Playlist Filter *<br>
+                            Spotify Subplaylist Maker is a Python script that takes a playlist link or user's
+                            liked songs and creates a filtered clone based on audio feature factors decided by
+                            the user (e.g. keeping songs that have high energy, high danceability, moderate
+                            loudness, and are in C major).
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

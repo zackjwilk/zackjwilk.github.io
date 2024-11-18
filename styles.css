@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color: blue;
+}
+
+body {
+    width: 98%;
+    margin: 0 auto;
+    font-size: 18px;
+    max-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    border-bottom: 2px dashed black;
+    position: relative;
+    padding: 2.5vh;
+}
+
+.header {
+    height: 12vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+}
+
+.left-header {
+    max-width: 50%;
+}
+
+#light-toggle {
+    right: 4vw;
+    top: 0;
+    width: 50%;
+    height: 95%;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    background-color: transparent;
+    border: 0;
+    width: fit-content;
+}
+
+#light-switch {
+    height: 100%;
+}
+
+.main-container {
+    background-color: white;
+    position: absolute;
+    display: flex;
+    margin: 0.3vw;
+    height: 100%;
+    top: 12vh;
+}
+
+#flashlight {
+    width: 30%;
+    transition: transform 0.05s ease-out;
+    z-index: 1000;
+    visibility: hidden;
+    outline: solid black;
+    outline-width: 1px;
+    pointer-events: none;
+}
+
+.contact {
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+}
+
+a {
+    color: gray;
+    padding-right: 1vw;
+}
+
+h1 {
+    font-size: 3.2vh;
+    font-weight: bold;
+    color: var(--color);
+    text-align: left;
+    margin-left: 1vw;
+}
+
+.bday-countdown {
+    font-size: 18px;
+}
+
+main {
+    padding: 1vw;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.left-column {
+    flex: 0.4;
+    padding: 2vh;
+    border: 2px dashed black;
+}
+
+.left-column p {
+    margin-bottom: 1vh;
+}
+
+.projects-title {
+    font-size: 22px;
+    color: var(--color);
+    font-weight: bold;
+    margin-bottom: 1vh;
+    text-align: left;
+}
+
+.scroll-proj {
+    max-height: 48vh;
+    overflow-y: auto;
+    padding-right: 1vw;
+}
+
+.right-column {
+    flex: 1;
+    margin-left: 2vw;
+}
+
+.display {
+    border: 2px dashed black;
+    height: 100%;
+}
+
+.proj-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--color);
+    margin-left: 1vw;
+}
+
+.proj-desc {
+    overflow-y: auto;
+    max-height: 60vh;
+    margin: 2vw;
+}
+
+button {
+    width: 100%;
+    font-size: 17px;
+    padding: 0.5vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+    cursor: pointer;
+}
