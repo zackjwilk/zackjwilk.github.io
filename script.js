@@ -10,7 +10,7 @@ const display = document.querySelector(".display");
 const style = getComputedStyle(document.body);
 const color = style.getPropertyValue("--color");
 
-flashlight.style.outline = `${body.offsetHeight*5}px solid black`;
+flashlight.style.outline = `${body.offsetHeight*10}px solid black`;
 flashlight.ondragstart = function () { return false; };
 
 body.addEventListener("mousemove", (event) => {
