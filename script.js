@@ -3,14 +3,14 @@ const flashlight = document.getElementById("flashlight");
 const lightToggle = document.getElementById("light-toggle");
 const lightSwitch = document.getElementById("light-switch");
 const headers = document.getElementsByTagName("header");
-const mainContainer = document.querySelector(".main-container");
+const main = document.getElementsByTagName("main")[0];
 const leftColumn = document.querySelector(".left-column");
 const display = document.querySelector(".display");
 
 const style = getComputedStyle(document.body);
 const color = style.getPropertyValue("--color");
 
-flashlight.style.outline = `${body.offsetWidth}px solid black`;
+flashlight.style.outline = `${body.offsetHeight*5}px solid black`;
 flashlight.ondragstart = function () { return false; };
 
 body.addEventListener("mousemove", (event) => {
@@ -32,7 +32,7 @@ lightToggle.addEventListener("click", function () {
         headers[0].style.background = "black";
         headers[0].style.borderBottom = "2px dashed white";
         headers[1].style.borderBottom = "2px dashed white";
-        mainContainer.style.backgroundColor = "black";
+        main.style.backgroundColor = "black";
         leftColumn.style.border = "2px dashed white";
         display.style.border = "2px dashed white";
         mode = "dark";
@@ -44,7 +44,7 @@ lightToggle.addEventListener("click", function () {
         headers[0].style.backgroundColor = "white"
         headers[0].style.borderBottom = "2px dashed black";
         headers[1].style.borderBottom = "2px dashed black";
-        mainContainer.style.backgroundColor = "white";
+        main.style.backgroundColor = "white";
         leftColumn.style.border = "2px dashed black";
         display.style.border = "2px dashed black";
         mode = "light";
