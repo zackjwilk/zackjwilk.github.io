@@ -26,6 +26,7 @@ lightToggle.addEventListener("click", function () {
     switchSFX.play();
     if (mode == "light") {
         flashlight.style.visibility = "visible";
+        lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
         body.style.backgroundColor = "black";
         body.style.color = "white";
@@ -38,6 +39,7 @@ lightToggle.addEventListener("click", function () {
         mode = "dark";
     } else {
         flashlight.style.visibility = "hidden";
+        lightToggle.title = "Dark Mode";
         lightSwitch.src = "assets/light-on.png";
         body.style.background = "white";
         body.style.color = "black";
