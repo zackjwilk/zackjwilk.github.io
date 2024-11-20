@@ -105,6 +105,7 @@ main {
     flex: 0.4;
     padding: 2vh;
     border: 2px dashed black;
+    border-radius: 12px;
 }
 
 .left-column p {
@@ -132,6 +133,7 @@ main {
 
 .display {
     border: 2px dashed black;
+    border-radius: 12px;
     height: 100%;
 }
 
