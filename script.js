@@ -84,7 +84,7 @@ const projName = document.querySelector(".proj-name");
 const projDesc = document.querySelector(".proj-desc");
 
 const projects = {
-    "spotify-helper": [`spotify-helper offers multiple features to help user automate tasks on Spotify
+    "spotify-tools": [`spotify-tools offers multiple features to help user automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
                         <b>Functions</b><br><br>
@@ -108,7 +108,7 @@ const projects = {
                         Spotify Subplaylist Maker is a Python script that takes a playlist link or user's
                         liked songs and creates a filtered clone based on audio feature factors decided by
                         the user (e.g. keeping songs that have high energy, high danceability, moderate
-                        loudness, and are in C major).`, "https://github.com/zackjwilk/spotify-helper"],
+                        loudness, and are in C major).`, "https://github.com/zackjwilk/spotify-tools"],
     "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
 }
 
