@@ -92,7 +92,7 @@ const projName = document.querySelector(".proj-name");
 const projDesc = document.querySelector(".proj-desc");
 
 const projects = {
-    "spotify-tools": [`spotify-tools offers multiple features to help user automate tasks on Spotify
+    "spoti-tools": [`spoti-tools offers multiple features to help user automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
                         <b>Functions</b><br><br>
