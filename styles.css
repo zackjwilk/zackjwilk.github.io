@@ -5,7 +5,7 @@
 }
 
 :root {
-    --color: #AD62AD;
+    --color: black;
 }
 
 body {
@@ -27,31 +27,27 @@ header {
 }
 
 .header {
-    height: 12vh;
+    background-color: white;
     width: 98%;
+    height: 12vh;
     position: fixed;
     top: 0;
     z-index: 10;
-    background-color: white;
+    display: flex;
+    align-items: center;
 }
 
 .left-header {
     max-width: 50%;
-    position: absolute;
     top: 4vh;
 }
 
 #light-toggle {
-    right: 4vw;
-    top: 0;
-    width: 50%;
-    height: 95%;
-    margin-top: 0;
-    margin-bottom: 0;
-    position: absolute;
+    height: 100%;
+    width: fit-content;
+    margin-left: 1vw;
     background-color: transparent;
     border: 0;
-    width: fit-content;
 }
 
 #light-switch {
@@ -79,18 +75,13 @@ a {
 }
 
 h1 {
-    font-size: 3.2vh;
+    font-size: 2.5vw;
     font-weight: bold;
     color: var(--color);
     text-align: left;
     margin-left: 1vw;
+    text-decoration: dotted underline;
 }
-
-/*
-.bday-countdown {
-    font-size: 18px;
-}
-*/
 
 main {
     padding: 1vw;
@@ -108,8 +99,7 @@ main {
 .left-column {
     flex: 0.4;
     padding: 2vh;
-    /*border: 2px dashed black;*/
-    border-radius: 12px;
+    border: 2px dashed black;
 }
 
 .left-column p {
@@ -125,6 +115,7 @@ main {
 }
 
 .scroll-proj {
+    flex: 1;
     max-height: 48vh;
     overflow-y: auto;
     padding-right: 1vw;
@@ -137,7 +128,6 @@ main {
 
 .display {
     border: 2px dashed black;
-    border-radius: 12px;
     height: 100%;
 }
 
@@ -150,7 +140,7 @@ main {
 
 .proj-desc {
     overflow-y: auto;
-    max-height: 60vh;
+    flex: 1;
     margin: 2vw;
 }
 
