@@ -116,7 +116,7 @@ const projects = {
                         Spotify Subplaylist Maker is a Python script that takes a playlist link or user's
                         liked songs and creates a filtered clone based on audio feature factors decided by
                         the user (e.g. keeping songs that have high energy, high danceability, moderate
-                        loudness, and are in C major).`, "https://github.com/zackjwilk/spotify-tools"],
+                        loudness, and are in C major).`, "https://github.com/zackjwilk/spoti-tools"],
     "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
 }
 
