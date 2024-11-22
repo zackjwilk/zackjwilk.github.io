@@ -5,7 +5,7 @@
 }
 
 :root {
-    --color: blue;
+    --color: #AD62AD;
 }
 
 body {
@@ -37,6 +37,8 @@ header {
 
 .left-header {
     max-width: 50%;
+    position: absolute;
+    top: 4vh;
 }
 
 #light-toggle {
@@ -84,9 +86,11 @@ h1 {
     margin-left: 1vw;
 }
 
+/*
 .bday-countdown {
     font-size: 18px;
 }
+*/
 
 main {
     padding: 1vw;
@@ -104,7 +108,7 @@ main {
 .left-column {
     flex: 0.4;
     padding: 2vh;
-    border: 2px dashed black;
+    /*border: 2px dashed black;*/
     border-radius: 12px;
 }
 
