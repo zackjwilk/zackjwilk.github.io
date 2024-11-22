@@ -53,6 +53,7 @@ lightToggle.addEventListener("click", function () {
     }
 });
 
+/*
 const bdayCountdown = document.querySelector(".bday-countdown")
 
 var x = setInterval(function () {
@@ -78,6 +79,7 @@ var x = setInterval(function () {
         bdayCountdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
     }
 }, 1000);
+*/
 
 const buttons = Array.from(document.getElementsByTagName("button"));
 const projName = document.querySelector(".proj-name");
@@ -118,7 +120,7 @@ buttons.forEach((button) => {
             projName.innerHTML = button.innerHTML;
             projName.href = projects[button.innerHTML][1];
             projDesc.innerHTML = projects[button.innerHTML][0];
-            button.style.color = color;
+            //button.style.color = color;
             button.style.fontWeight = "bold";
             buttons.forEach((button2) => {
                 if (button2 != button) {
