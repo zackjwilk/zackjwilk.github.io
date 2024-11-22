@@ -14,10 +14,12 @@ flashlight.style.outline = `${body.offsetHeight*10}px solid black`;
 flashlight.ondragstart = function () { return false; };
 
 body.addEventListener("mousemove", (event) => {
-    const X = event.clientX - flashlight.offsetWidth / 2
-    const Y = event.clientY - flashlight.offsetHeight / 2;
+    if (flashlight.style.visibility == "visible") {
+        const X = event.clientX - flashlight.offsetWidth / 2
+        const Y = event.clientY - flashlight.offsetHeight / 2;
 
-    flashlight.style.transform = `translate(${X}px, ${Y}px)`;
+        flashlight.style.transform = `translate(${X}px, ${Y}px)`;
+    }
 });
 
 var mode = "light"
