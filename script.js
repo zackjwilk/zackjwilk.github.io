@@ -23,11 +23,15 @@ body.addEventListener("mousemove", (event) => {
 });
 
 var mode = "light"
-lightToggle.addEventListener("click", function () {
+lightToggle.addEventListener("click", function (event) {
     var switchSFX = new Audio("assets/switch.wav");
     switchSFX.play();
     if (mode == "light") {
         flashlight.style.visibility = "visible";
+        const X = event.clientX - flashlight.offsetWidth / 2
+        const Y = event.clientY - flashlight.offsetHeight / 2;
+        flashlight.style.transform = `translate(${X}px, ${Y}px)`;
+
         lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
         body.style.backgroundColor = "black";
