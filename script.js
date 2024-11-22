@@ -34,6 +34,7 @@ lightToggle.addEventListener("click", function (event) {
 
         lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
+        document.documentElement.style.setProperty("--color", "white");
         body.style.backgroundColor = "black";
         body.style.color = "white";
         headers[0].style.background = "black";
@@ -47,6 +48,7 @@ lightToggle.addEventListener("click", function (event) {
         flashlight.style.visibility = "hidden";
         lightToggle.title = "Dark Mode";
         lightSwitch.src = "assets/light-on.png";
+        document.documentElement.style.setProperty("--color", "black");
         body.style.background = "white";
         body.style.color = "black";
         headers[0].style.backgroundColor = "white"
