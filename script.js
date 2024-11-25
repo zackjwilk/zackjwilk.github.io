@@ -120,7 +120,9 @@ const projects = {
                         the user (e.g. keeping songs that have high energy, high danceability, moderate
                         loudness, and are in C major).`, "https://github.com/zackjwilk/spoti-tools"],
     "music compass": [`Music Compass is a website that allows users to log in with Spotify and generate a
-                        political compass meme style image using their top 10 artists on Spotify!`, "https://music-compass.glitch.me"],
+                        political compass meme style image using their top 10 artists on Spotify!
+                        <br><br>
+                        *NOT YET OPEN TO ALL USERS AS IT IS CURRENTLY PENDING SPOTIFY EXTENSION REQUEST*`, "https://music-compass.glitch.me"],
     "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
 }
 
