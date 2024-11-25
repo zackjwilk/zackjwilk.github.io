@@ -119,6 +119,8 @@ const projects = {
                         liked songs and creates a filtered clone based on audio feature factors decided by
                         the user (e.g. keeping songs that have high energy, high danceability, moderate
                         loudness, and are in C major).`, "https://github.com/zackjwilk/spoti-tools"],
+    "music compass": [`Music Compass is a website that allows users to log in with Spotify and generate a
+                        political compass meme style image using their top 10 artists on Spotify!`, "https://music-compass.glitch.me"].
     "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
 }
 
