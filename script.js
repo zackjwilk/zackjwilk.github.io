@@ -122,7 +122,9 @@ const projects = {
     "music compass": [`Music Compass is a website that allows users to log in with Spotify and generate a
                         political compass meme style image using their top 10 artists on Spotify!
                         <br><br>
-                        *NOT YET OPEN TO ALL USERS AS IT IS CURRENTLY PENDING SPOTIFY EXTENSION REQUEST*`, "https://music-compass.glitch.me"],
+                        *NOT YET OPEN TO ALL USERS AS IT IS CURRENTLY STUCK IN "DEVELOPER MODE" AND PENDING 
+                        SPOTIFY EXTENSION REQUEST. IF YOU WOULD LIKE TO TRY IT OUT, SEND ME AN EMAIL WITH
+                        THE EMAIL ADDRESS LINKED TO YOUR SPOTIFY ACCOUNT SO I CAN MANUALLY ADD YOU.*`, "https://music-compass.glitch.me"],
     "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
 }
 
