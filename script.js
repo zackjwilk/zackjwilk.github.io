@@ -94,8 +94,8 @@ const projName = document.querySelector(".proj-name");
 const projDesc = document.querySelector(".proj-desc");
 
 const projects = {
-    "sound-bending": [`sound-bending allows you to use hand movements to record vocal loops and add effects 
-                        into FL Studio in real-time with your webcam.
+    "sound-bending": [`sound-bending allows you to use your hand movements to record vocal loops and add effects 
+                        into FL Studio in real-time with your webcam!
                         <br><br>
                         sound-bending uses MediaPipe for Python to track hand landmarks through the webcam 
                         video stream. It recognizes gestures the user is making with their hands (peace sign, 
