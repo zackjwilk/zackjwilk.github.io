@@ -94,6 +94,19 @@ const projName = document.querySelector(".proj-name");
 const projDesc = document.querySelector(".proj-desc");
 
 const projects = {
+    "sound-bending": [`sound-bending allows you to use hand movements to record vocal loops and add effects 
+                        into FL Studio in real-time with your webcam.
+                        <br><br>
+                        sound-bending uses MediaPipe for Python to track hand landmarks through the webcam 
+                        video stream. It recognizes gestures the user is making with their hands (peace sign, 
+                        fist, palm, etc.), and responds by sending signals to FL Studio. FL Studio allows for
+                        MIDI scripting, which is why loopMIDI is required. loopMIDI creates the MIDI port to 
+                        act as a connected MIDI controller. The Python program sends MIDI signals with the 
+                        channel, note, and velocity values as vessels for data to manipulate the FL Studio
+                        script——like whether to record or add reverb/delay and how much.
+                        <br><br>
+                        This project was made in a few days after being inspired from revisiting Imogen Heap's 
+                        Tiny Desk performance. I hope to expand on it soon after experimenting with it some more.`],
     "spoti-tools": [`spoti-tools offers multiple features to help user automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
