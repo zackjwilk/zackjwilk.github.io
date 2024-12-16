@@ -78,31 +78,20 @@
 
                     <div class="scroll-desc">
                         <p class="proj-desc">
-                            spoti-tools offers multiple features to help user automate tasks on Spotify
-                            like adding local files (w/ metadata) and sequencing/organizing playlists.
+                            sound-bending allows you to use hand movements to record vocal loops and add effects 
+                            into FL Studio in real-time with your webcam.
                             <br><br>
-                            <b>Functions</b><br><br>
-                            * Local Files Automator *<br>
-                            Spotify Local Files Automator is a Python script that takes user input of a song
-                            title and artist name and/or link to song on SoundCloud and rips the song from
-                            SoundCloud, downloads it, adds metadata (title, artist, cover image), and places
-                            it in the user's specified Spotify local files folder so they can listen to it on
-                            Spotify (useful for unreleased songs or songs that are otherwise not typically
-                            available on Spotify).
+                            sound-bending uses MediaPipe for Python to track hand landmarks through the webcam 
+                            video stream. It recognizes gestures the user is making with their hands (peace sign, 
+                            fist, palm, etc.), and responds by sending signals to FL Studio. FL Studio allows for
+                            MIDI scripting, which is why loopMIDI is required. loopMIDI creates the MIDI port to 
+                            act as a connected MIDI controller. The Python program sends MIDI signals with the 
+                            channel, note, and velocity values as vessels for data to manipulate the FL Studio
+                            script——like whether to record or add reverb/delay and how much.
                             <br><br>
-                            * Playlist Sequencer *<br>
-                            Spotify Playlist Sequencer is a Python script that takes user input of their Spotify
-                            User ID and name of one of their playlists and creates a clone of said playlist in a
-                            more comprehensible sequence. The tracks in the new playlist can be sequenced in
-                            symmetrical (increasing until a maximum and then decreasing back down until the end
-                            of the playlist), ascending, or descending order based on a selected audio feature
-                            (energy, danceability, tempo, etc.).
-                            <br><br>
-                            * Subplaylist Maker / Playlist Filter *<br>
-                            Spotify Subplaylist Maker is a Python script that takes a playlist link or user's
-                            liked songs and creates a filtered clone based on audio feature factors decided by
-                            the user (e.g. keeping songs that have high energy, high danceability, moderate
-                            loudness, and are in C major).
+                            This project was made in a few days after being inspired from revisiting Imogen Heap's 
+                            Tiny Desk performance. I hope to expand on it soon after experimenting with it some 
+                            more.
                         </p>
                     </div>
                 </div>
