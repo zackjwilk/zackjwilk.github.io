@@ -107,7 +107,10 @@ const projects = {
                         <br><br>
                         This project was made in a few days after being inspired from revisiting Imogen Heap's 
                         Tiny Desk performance. I hope to expand on it soon after experimenting with it some 
-                        more.`, "https://github.com/zackjwilk/sound-bending"],
+                        more.
+                        <br><br>
+                        WATCH DEMO <a href="https://www.instagram.com/reel/DEJJdzZuyFT/?next=%2F" target="_blank">HERE</a>`,
+                        "https://github.com/zackjwilk/sound-bending"],
     "spoti-tools": [`spoti-tools offers multiple features to help user automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
