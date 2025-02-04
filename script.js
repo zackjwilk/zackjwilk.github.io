@@ -61,34 +61,6 @@ lightToggle.addEventListener("click", function (event) {
     }
 });
 
-/*
-const bdayCountdown = document.querySelector(".bday-countdown")
-
-var x = setInterval(function () {
-    var now = new Date();
-    var month = now.getUTCMonth();
-    var day = now.getUTCDate();
-    var year = now.getUTCFullYear();
-    if (month == 4 && day == 6) {
-        bdayCountdown.innerHTML = "it my birthday!!!";
-    } else {
-        if (month > 5 || (month == 5 && day > 6)) {
-            year++;
-        }
-
-        var birthday = new Date(year, 4, 6)
-        var distance = birthday.getTime() - now.getTime();
-
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        bdayCountdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    }
-}, 1000);
-*/
-
 const buttons = Array.from(document.getElementsByTagName("button"));
 const projName = document.querySelector(".proj-name");
 const projDesc = document.querySelector(".proj-desc");
@@ -103,21 +75,21 @@ const projects = {
                         MIDI scripting, which is why loopMIDI is required. loopMIDI creates the MIDI port to 
                         act as a connected MIDI controller. The Python program sends MIDI signals with the 
                         channel, note, and velocity values as vessels for data to manipulate the FL Studio
-                        script——like whether to record or add reverb/delay and how much.
+                        script, such as whether to record or add reverb/delay and how much.
                         <br><br>
-                        This project was made in a few days after being inspired from revisiting Imogen Heap's 
+                        This project was made in a few days after being inspired by revisiting Imogen Heap's 
                         Tiny Desk performance. I hope to expand on it soon after experimenting with it some 
                         more.
                         <br><br>
                         WATCH DEMO <a href="https://www.instagram.com/reel/DEJJdzZuyFT/?next=%2F" target="_blank">HERE</a>`,
                         "https://github.com/zackjwilk/sound-bending"],
-    "spoti-tools": [`spoti-tools offers multiple features to help user automate tasks on Spotify
+    "spoti-tools": [`spoti-tools offers multiple features to help users automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
                         <b>Functions</b><br><br>
                         * Local Files Automator *<br>
                         Spotify Local Files Automator is a Python script that takes user input of a song
-                        title and artist name and/or link to song on SoundCloud and rips the song from
+                        title and artist name and/or link to the song on SoundCloud and rips the song from
                         SoundCloud, downloads it, adds metadata (title, artist, cover image), and places
                         it in the user's specified Spotify local files folder so they can listen to it on
                         Spotify (useful for unreleased songs or songs that are otherwise not typically 
