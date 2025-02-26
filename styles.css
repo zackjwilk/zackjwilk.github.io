@@ -60,7 +60,7 @@ header {
     z-index: 1000;
     visibility: hidden;
     outline: solid black;
-    outline-width: 1px;
+    outline-width: 9999px;
     pointer-events: none;
 }
 
