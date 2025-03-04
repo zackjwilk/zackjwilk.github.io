@@ -83,6 +83,18 @@ const projects = {
                         <br><br>
                         WATCH DEMO <a href="https://www.instagram.com/reel/DEJJdzZuyFT/?next=%2F" target="_blank">HERE</a>`,
                         "https://github.com/zackjwilk/sound-bending"],
+    "plaid-drum-machine": [`plaid-drum-machine is a Java program that generates random plaid patterns by 
+                                generating a random background color and creating 2-5 types of both horizontal 
+                                and vertical lines, varying in color, thickness, and transparency. These attributes 
+                                then determine the drum pattern generated to accompany it. For example, 
+                                the brighter the background color, the higher the BPM. Thicker lines will 
+                                produce samples like kicks and snares, while thinner lines will produce 
+                                samples like rides and cowbells. The more opaque a line is, the louder 
+                                the sample associated with it will be. The brighter the color of a line 
+                                is, the higher the pitch of the sample associated with it will be. A 
+                                square cyclically moves from the top left of the pattern to the bottom 
+                                right at the designated BPM, detecting what lines are contained within 
+                                it and playing drum samples accordingly.`, "https://github.com/zackjwilk/plaid-drum-machine"],
     "spoti-tools": [`spoti-tools offers multiple features to help users automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
