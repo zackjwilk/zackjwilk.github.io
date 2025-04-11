@@ -80,7 +80,7 @@ h1 {
     color: var(--color);
     text-align: left;
     margin-left: 1vw;
-    text-decoration: dotted underline;
+    /*text-decoration: dotted underline;*/
 }
 
 main {
