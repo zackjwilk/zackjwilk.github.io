@@ -1,60 +1,99 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --color: black;
-}
-
 body {
-    width: 98%;
+    width: 100vw;
+    height: 100vh;
     margin: 0 auto;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: white;
     color: black;
+    background: rgb(160, 180, 150);
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
-}
-
-header {
-    border-bottom: 2px dashed black;
-    position: relative;
-    padding: 2.5vh;
-}
-
-.header {
-    background-color: white;
-    width: 98%;
-    height: 12vh;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-    display: flex;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.left-header {
-    max-width: 50%;
-    top: 4vh;
+.dropdown {
+    text-align: center;
+    width: 30%;
+    height: 10%;
+    border: 2px wavy black;
 }
 
-#light-toggle {
-    height: 100%;
-    width: fit-content;
-    margin-left: 1vw;
+#ascii {
+    height: 15vh;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 2vh;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-top: -10vh;
+    color: rgb(230, 100, 20);
+}
+
+button {
     background-color: transparent;
-    border: 0;
+    border-color: transparent;
+    font-family: monospace;
+    font-size: 4.5vh;
+    width: 100%;
+    height: 100%;
 }
 
-#light-switch {
-    height: 100%;
+.dropdownButton {
+    visibility: hidden;
+    height: 80%;
+    text-align: right;
+    font-size: 3.5vh;
+    padding-bottom: 1.5vh;
+}
+
+.dropdownButton::first-letter {
+    color: rgb(230, 100, 20);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5vh;
+}
+
+#nameButton::first-letter {
+    color: rgb(230, 100, 20);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5vh;
+}
+
+.leftContainer {
+    visibility: hidden;
+    position: absolute;
+    left: 5vw;
+    height: 80%;
+    width: 20%;
+    padding: 2vw;
+    overflow-y: auto;
+    word-wrap: break-word;
+    font-family: monospace;
+    color: black;
+    font-size: 2.5vh;
+    border: 2px dashed rgb(230, 100, 20);
+}
+
+#leftText {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 3vh;
+}
+
+.contact {
+    position: absolute;
+    bottom: 2vh;
+    margin: 2vh;
+}
+
+a {
+    color: rgb(230, 100, 20);
 }
 
 #flashlight {
+    position: absolute;
     width: 30%;
     transition: transform 0.05s ease-out;
     z-index: 1000;
@@ -64,91 +103,53 @@ header {
     pointer-events: none;
 }
 
-.contact {
-    padding-top: 1vh;
-    padding-bottom: 2vh;
-}
-
-a {
-    color: gray;
-    padding-right: 1vw;
-}
-
-h1 {
-    font-size: 2.5vw;
-    font-weight: bold;
-    color: var(--color);
-    text-align: left;
-    margin-left: 1vw;
-    /*text-decoration: dotted underline;*/
-}
-
-main {
-    padding: 1vw;
-    background-color: white;
+#lightToggle {
     position: absolute;
-    margin: 0.3vw;
-    top: 12vh;
-    left: 0;
+    top: 2vh;
+    right: 1vw;
+    height: 10vh;
+    width: 5vw;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
 }
 
-.container {
-    display: flex;
-}
-
-.left-column {
-    flex: 0.4;
-    padding: 2vh;
-    border: 2px dashed black;
-}
-
-.left-column p {
-    margin-bottom: 1vh;
-}
-
-.projects-title {
-    font-size: 22px;
-    color: var(--color);
-    font-weight: bold;
-    margin-bottom: 1vh;
-    text-align: left;
-}
-
-.scroll-proj {
-    flex: 1;
-    max-height: 48vh;
-    overflow-y: auto;
-    padding-right: 1vw;
-}
-
-.right-column {
-    flex: 1;
-    margin-left: 2vw;
-}
-
-.display {
-    border: 2px dashed black;
+#lightSwitch {
     height: 100%;
 }
 
-.proj-name {
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--color);
-    margin-left: 1vw;
+#projectButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 0;
 }
 
-.proj-desc {
-    overflow-y: auto;
-    flex: 1;
-    margin: 2vw;
+.projectButton {
+    border: 2px dashed rgb(230, 100, 20);
+    padding: 1.5vh;
+    font-size: 1.2vw;
+    height: auto;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 1vh;
 }
 
-button {
-    width: 100%;
-    font-size: 17px;
-    padding: 0.5vh;
-    margin-top: 1.5vh;
-    margin-bottom: 1.5vh;
+.projectButton:hover {
+    background-color: rgb(170, 190, 160);
+}
+
+#projectDetailsContainer {
+    padding: 10px 0;
+    position: relative;
+    top: 0;
+}
+
+#backButton {
+    border: 2px dashed rgb(230, 100, 20);
+    padding: 0 3vh;
+    font-size: 5vh;
+    height: auto;
+    width: auto;
     cursor: pointer;
 }
