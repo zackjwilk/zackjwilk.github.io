@@ -11,96 +11,41 @@
 
 <body>
     <img src="assets/flashlight.png" alt="shadow" id="flashlight">
+    <button id="lightToggle" title="Dark Mode">
+        <img src="assets/light-on.png" id="lightSwitch">
+    </button>
 
-    <header class="header">
-        <div class="left-header">
-            <h1>zack wilkinson :)</h1>
-            <!--<h1 class="bday-countdown">BIRTHDAY</h1>-->
-        </div>
-        <button id="light-toggle" title="Dark Mode">
-            <img src="assets/light-on.png" id="light-switch">
-        </button>
-    </header>
+    <p id="ascii">
+ _    _  ____  __    ___  _____  __  __  ____ 
+( \/\/ )( ___)(  )  / __)(  _  )(  \/  )( ___)
+ )    (  )__)  )(__( (__  )(_)(  )    (  )__) 
+(__/\__)(____)(____)\___)(_____)(_/\/\_)(____)
+    </p>
 
-    <main>
-        <div class="container">
-            <section class="left-column">
-                <p>
-                    Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science at
-                    Stevens Institute of Technology. I'm interested in gaining experience through
-                    internship opportunities—primarily pertaining to software development, but
-                    I'm open to exploring any opportunities that will broaden my knowledge and better
-                    familiarize me with real-world work environments in the CS field.
-                </p>
+    <div class="dropdown">
+        <button id="nameButton">▼ zack wilkinson</button>
+        <button id="projectsButton" class="dropdownButton">● projects</button>
+        <button id="aboutButton" class="dropdownButton">☺ about</button>
+    </div>
 
-                <div class="contact">
-                    <a href="mailto:zackjwilkinson@gmail.com">Email</a>
-                    <a href="https://github.com/zackjwilk" target="_blank">GitHub</a>
-                    <a href="https://www.linkedin.com/in/zachary-wilkinson-589849309/" target="_blank">LinkedIn</a>
-                    <a href="https://www.instagram.com/zackjwilk" target="_blank">Instagram</a>
-                </div>
+    <section class="leftContainer">
+        <p id="leftText">
+            Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science
+            at Stevens Institute of Technology. I'm interested in gaining experience through internship 
+            opportunities—primarily pertaining to software development, but I'm open to exploring any 
+            opportunities that will broaden my knowledge and better familiarize me with real-world work 
+            environments in the CS field.
+            <div class="contact">
+                <a href="mailto:zackjwilkinson@gmail.com">Email</a>
+                <a href="https://github.com/zackjwilk" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/zachary-wilkinson-589849309/" target="_blank">LinkedIn</a>
+                <a href="https://www.instagram.com/zackjwilk" target="_blank">Instagram</a>
+            </div>
+        </p>
+        <!-- project buttons and details added here by js -->
+    </section>
 
-                <div class="projects">
-                    <h2 class="projects-title">projects</h2>
-                    <div class="scroll-proj">
-                        <button style="font-weight:bold;">sound-bending</button>
-                        <hr>
-                        <button>spoti-tools</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                        <hr>
-                        <button>I WILL MAKE MORE PROJECTS</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="right-column">
-                <div class="display">
-                    <header>
-                        <a class="proj-name" href="https://github.com/zackjwilk/sound-bending" target="_blank">sound-bending</a>
-                    </header>
-
-                    <div class="scroll-desc">
-                        <p class="proj-desc">
-                            sound-bending allows you to use your hand movements to record vocal loops and add effects 
-                            into FL Studio in real-time with your webcam!
-                            <br><br>
-                            sound-bending uses MediaPipe for Python to track hand landmarks through the webcam 
-                            video stream. It recognizes gestures the user is making with their hands (peace sign, 
-                            fist, palm, etc.), and responds by sending signals to FL Studio. FL Studio allows for
-                            MIDI scripting, which is why loopMIDI is required. loopMIDI creates the MIDI port to 
-                            act as a connected MIDI controller. The Python program sends MIDI signals with the 
-                            channel, note, and velocity values as vessels for data to manipulate the FL Studio
-                            script, such as whether to record or add reverb/delay and how much.
-                            <br><br>
-                            This project was made in a few days after being inspired by revisiting Imogen Heap's 
-                            Tiny Desk performance. I hope to expand on it soon after experimenting with it some 
-                            more.
-                            <br><br>
-                            WATCH DEMO <a href="https://www.instagram.com/reel/DEJJdzZuyFT/?next=%2F" target="_blank">HERE</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
     <script src="script.js"></script>
 </body>
-
+    
 </html>
