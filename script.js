@@ -1,72 +1,17 @@
 const body = document.body;
+const nameButton = document.getElementById("nameButton");
+const projectsButton = document.getElementById("projectsButton");
+const aboutButton = document.getElementById("aboutButton");
+const dropdownButtons = document.querySelectorAll(".dropdownButton");
+const leftContainer = document.querySelector(".leftContainer");
+const leftText = document.getElementById("leftText");
+const contact = document.querySelector(".contact");
 const flashlight = document.getElementById("flashlight");
-const lightToggle = document.getElementById("light-toggle");
-const lightSwitch = document.getElementById("light-switch");
-const headers = document.getElementsByTagName("header");
-const main = document.getElementsByTagName("main")[0];
-const leftColumn = document.querySelector(".left-column");
-const display = document.querySelector(".display");
+const lightToggle = document.getElementById("lightToggle");
+const lightSwitch = document.getElementById("lightSwitch");
 
-const style = getComputedStyle(document.body);
-const color = style.getPropertyValue("--color");
-
-//flashlight.style.outline = `${body.offsetHeight*10}px solid black`;
-flashlight.ondragstart = function () { return false; };
-
-body.addEventListener("mousemove", (event) => {
-    if (flashlight.style.visibility == "visible") {
-        const X = event.clientX - flashlight.offsetWidth / 2
-        const Y = event.clientY - flashlight.offsetHeight / 2;
-
-        flashlight.style.transform = `translate(${X}px, ${Y}px)`;
-    }
-});
-
-var mode = "light"
-lightToggle.addEventListener("click", function (event) {
-    var switchSFX = new Audio("assets/switch.wav");
-    switchSFX.play();
-    if (mode == "light") {
-        flashlight.style.visibility = "visible";
-        const X = event.clientX - flashlight.offsetWidth / 2
-        const Y = event.clientY - flashlight.offsetHeight / 2;
-        flashlight.style.transform = `translate(${X}px, ${Y}px)`;
-
-        lightToggle.title = "Light Mode";
-        lightSwitch.src = "assets/light-off.png";
-        document.documentElement.style.setProperty("--color", "white");
-        body.style.backgroundColor = "black";
-        body.style.color = "white";
-        headers[0].style.background = "black";
-        headers[0].style.borderBottom = "2px dashed white";
-        headers[1].style.borderBottom = "2px dashed white";
-        main.style.backgroundColor = "black";
-        leftColumn.style.border = "2px dashed white";
-        display.style.border = "2px dashed white";
-        mode = "dark";
-    } else {
-        flashlight.style.visibility = "hidden";
-        lightToggle.title = "Dark Mode";
-        lightSwitch.src = "assets/light-on.png";
-        document.documentElement.style.setProperty("--color", "black");
-        body.style.background = "white";
-        body.style.color = "black";
-        headers[0].style.backgroundColor = "white"
-        headers[0].style.borderBottom = "2px dashed black";
-        headers[1].style.borderBottom = "2px dashed black";
-        main.style.backgroundColor = "white";
-        leftColumn.style.border = "2px dashed black";
-        display.style.border = "2px dashed black";
-        mode = "light";
-    }
-});
-
-const buttons = Array.from(document.getElementsByTagName("button"));
-const projName = document.querySelector(".proj-name");
-const projDesc = document.querySelector(".proj-desc");
-
-const projects = {
-    "sound-bending": [`sound-bending allows you to use your hand movements to record vocal loops and add effects 
+const projects = [
+    { name: "sound-bending", description: `sound-bending allows you to use your hand movements to record vocal loops and add effects 
                         into FL Studio in real-time with your webcam!
                         <br><br>
                         sound-bending uses MediaPipe for Python to track hand landmarks through the webcam 
@@ -82,23 +27,11 @@ const projects = {
                         more.
                         <br><br>
                         WATCH DEMO <a href="https://www.instagram.com/reel/DEJJdzZuyFT/?next=%2F" target="_blank">HERE</a>`,
-                        "https://github.com/zackjwilk/sound-bending"],
-    "plaid-drum-machine": [`plaid-drum-machine is a Java program that generates random plaid patterns by 
-                                generating a random background color and creating 2-5 types of both horizontal 
-                                and vertical lines, varying in color, thickness, and transparency. These attributes 
-                                then determine the drum pattern generated to accompany it. For example, 
-                                the brighter the background color, the higher the BPM. Thicker lines will 
-                                produce samples like kicks and snares, while thinner lines will produce 
-                                samples like rides and cowbells. The more opaque a line is, the louder 
-                                the sample associated with it will be. The brighter the color of a line 
-                                is, the higher the pitch of the sample associated with it will be. A 
-                                square cyclically moves from the top left of the pattern to the bottom 
-                                right at the designated BPM, detecting what lines are contained within 
-                                it and playing drum samples accordingly.`, "https://github.com/zackjwilk/plaid-drum-machine"],
-    "spoti-tools": [`spoti-tools offers multiple features to help users automate tasks on Spotify
+                    link: "https://github.com/zackjwilk/sound-bending" },
+    { name: "spoti-tools", description: `spoti-tools offers multiple features to help users automate tasks on Spotify
                         like adding local files (w/ metadata) and sequencing/organizing playlists.
                         <br><br>
-                        <b>Functions</b><br><br>
+                        ** Functions **<br><br>
                         * Local Files Automator *<br>
                         Spotify Local Files Automator is a Python script that takes user input of a song
                         title and artist name and/or link to the song on SoundCloud and rips the song from
@@ -119,30 +52,128 @@ const projects = {
                         Spotify Subplaylist Maker is a Python script that takes a playlist link or user's
                         liked songs and creates a filtered clone based on audio feature factors decided by
                         the user (e.g. keeping songs that have high energy, high danceability, moderate
-                        loudness, and are in C major).`, "https://github.com/zackjwilk/spoti-tools"],
-    "music compass": [`Music Compass is a website that allows users to log in with Spotify and generate a
-                        political compass meme style image using their top 10 artists on Spotify!
-                        <br><br>
-                        *NOT YET OPEN TO ALL USERS AS IT IS CURRENTLY STUCK IN "DEVELOPER MODE" AND PENDING 
-                        SPOTIFY EXTENSION REQUEST. IF YOU WOULD LIKE TO TRY IT OUT, SEND ME AN EMAIL WITH
-                        THE EMAIL ADDRESS LINKED TO YOUR SPOTIFY ACCOUNT SO I CAN MANUALLY ADD YOU.*`, "https://music-compass.glitch.me"],
-    "I WILL MAKE MORE PROJECTS": ["I WILL I SWEAR!!!", ""]
+                        loudness, and are in C major).`,
+                    link: "https://github.com/zackjwilk/spoti-tools" }
+];
+
+// create project buttons container at beginning of leftContainer
+const projectButtonsContainer = document.createElement("div");
+projectButtonsContainer.id = "projectButtonsContainer";
+projectButtonsContainer.style.display = "none";
+leftContainer.insertBefore(projectButtonsContainer, leftContainer.firstChild);
+
+// create buttons for each project
+projects.forEach((project, index) => {
+    const button = document.createElement("button");
+    button.className = "projectButton";
+    button.textContent = project.name;
+    button.addEventListener("click", () => showProjectDetails(index));
+    projectButtonsContainer.appendChild(button);
+});
+
+// create project details container
+const projectDetailsContainer = document.createElement("div");
+projectDetailsContainer.id = "projectDetailsContainer";
+projectDetailsContainer.style.display = "none";
+leftContainer.appendChild(projectDetailsContainer);
+
+function showProjectDetails(index) {
+    projectDetailsContainer.style.display = "block";
+    projectDetailsContainer.innerHTML = `
+        <a href=${projects[index].link} target="_blank">${projects[index].name}</a>
+        <p>${projects[index].description}</p>
+        <button id="backButton">←</button>
+    `;
+    
+    projectButtonsContainer.style.display = "none";
+
+    document.getElementById("backButton").addEventListener("click", () => {
+        projectDetailsContainer.style.display = "none";
+        projectButtonsContainer.style.display = "block";
+    });
 }
 
-buttons.forEach((button) => {
-    if (button != lightToggle) {
-        button.addEventListener("click", function () {
-            projName.innerHTML = button.innerHTML;
-            projName.href = projects[button.innerHTML][1];
-            projDesc.innerHTML = projects[button.innerHTML][0];
-            //button.style.color = color;
-            button.style.fontWeight = "bold";
-            buttons.forEach((button2) => {
-                if (button2 != button) {
-                    button2.style.color = "black";
-                    button2.style.fontWeight = "normal";
-                }
-            })
-        })
+// dropdown
+function toggleDropdown(opening) {
+    if (opening) {
+        nameButton.innerHTML = "_ zack wilkinson";
+        return;
+    };
+    nameButton.innerHTML = "▼ zack wilkinson";
+    leftContainer.style.visibility = "hidden";
+    leftText.style.visibility = "hidden";
+    contact.style.visibility = "hidden";
+    projectButtonsContainer.style.display = "none";
+    projectDetailsContainer.style.display = "none";
+    projectsButton.style.textDecoration = "";
+    aboutButton.style.textDecoration = "";
+};
+
+nameButton.addEventListener("click", function (event) {
+    dropdownButtons.forEach(button => {
+        button.style.visibility = button.style.visibility === "visible" ? "hidden" : "visible";
+    });
+    nameButton.innerHTML[0] === "▼" ? toggleDropdown(true) : toggleDropdown(false);
+});
+
+aboutButton.addEventListener("click", function (event) {
+    leftContainer.style.visibility = "visible";
+    leftText.style.visibility = "visible";
+    contact.style.visibility = "visible";
+    projectButtonsContainer.style.display = "none";
+    projectDetailsContainer.style.display = "none";
+    aboutButton.style.textDecoration = "1.5px underline dashed rgb(230, 100, 20)";
+    projectsButton.style.textDecoration = "";
+    leftText.innerHTML = `Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science
+     at Stevens Institute of Technology. I'm interested in gaining experience through internship 
+     opportunities—primarily pertaining to software development, but I'm open to exploring any 
+     opportunities that will broaden my knowledge and better familiarize me with real-world work 
+     environments in the CS field.`;
+});
+
+projectsButton.addEventListener("click", function (event) {
+    leftContainer.style.visibility = "visible";
+    leftText.style.visibility = "hidden";
+    contact.style.visibility = "hidden";
+    projectButtonsContainer.style.display = "block";
+    projectDetailsContainer.style.display = "none";
+    projectsButton.style.textDecoration = "1.5px underline dashed rgb(230, 100, 20)";
+    aboutButton.style.textDecoration = "";
+    
+    leftContainer.scrollTop = 0;
+});
+
+// flashlight
+flashlight.ondragstart = function () { return false; };
+
+body.addEventListener("mousemove", (event) => {
+    if (flashlight.style.visibility == "visible") {
+        flashlight.style.left = `${event.clientX}px`;
+        flashlight.style.top = `${event.clientY}px`;
+
+        flashlight.style.transform = "translate(-50%, -50%)";
     }
-})
+});
+
+var mode = "light"
+lightToggle.addEventListener("click", function (event) {
+    var switchSFX = new Audio("assets/switch.wav");
+    switchSFX.play();
+    if (mode == "light") {
+        flashlight.style.visibility = "visible";
+        flashlight.style.left = `${event.clientX}px`;
+        flashlight.style.top = `${event.clientY}px`;
+        flashlight.style.transform = "translate(-50%, -50%)";
+
+        lightToggle.title = "Light Mode";
+        lightSwitch.src = "assets/light-off.png";
+        
+        mode = "dark";
+    } else {
+        flashlight.style.visibility = "hidden";
+        lightToggle.title = "Dark Mode";
+        lightSwitch.src = "assets/light-on.png";
+        
+        mode = "light";
+    }
+});
