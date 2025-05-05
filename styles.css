@@ -36,6 +36,7 @@ button {
     font-size: 4.5vh;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 
 .dropdownButton {
@@ -130,7 +131,6 @@ a {
     padding: 1.5vh;
     font-size: 1.2vw;
     height: auto;
-    cursor: pointer;
     text-align: left;
     margin-bottom: 1vh;
 }
@@ -151,5 +151,4 @@ a {
     font-size: 5vh;
     height: auto;
     width: auto;
-    cursor: pointer;
 }
