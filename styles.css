@@ -83,6 +83,18 @@ button {
     margin: 3vh;
 }
 
+* {
+    scrollbar-color: rgb(230, 100, 20) transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(230, 100, 20);
+}
+
 .contact {
     position: absolute;
     bottom: 2vh;
@@ -91,6 +103,7 @@ button {
 
 a {
     color: rgb(230, 100, 20);
+    font-weight: bold;
 }
 
 #flashlight {
