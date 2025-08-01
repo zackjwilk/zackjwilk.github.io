@@ -25,7 +25,7 @@ body {
     font-size: 2vh;
     font-weight: bold;
     line-height: 1.2;
-    margin-top: -10vh;
+    margin-top: -20vh;
     color: rgb(230, 100, 20);
 }
 
@@ -50,13 +50,13 @@ button {
 .dropdownButton::first-letter {
     color: rgb(230, 100, 20);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 5vh;
+    font-size: 4vh;
 }
 
 #nameButton::first-letter {
     color: rgb(230, 100, 20);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 5vh;
+    font-size: 4vh;
 }
 
 .leftContainer {
@@ -169,4 +169,3 @@ a {
 #backButton:hover {
     background-color: rgb(170, 190, 160);
 }
-
