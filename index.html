@@ -15,37 +15,62 @@
         <img src="assets/light-on.png" id="lightSwitch">
     </button>
 
-    <p id="ascii">
- _    _  ____  __    ___  _____  __  __  ____ 
-( \/\/ )( ___)(  )  / __)(  _  )(  \/  )( ___)
- )    (  )__)  )(__( (__  )(_)(  )    (  )__) 
-(__/\__)(____)(____)\___)(_____)(_/\/\_)(____)
-    </p>
+    <div class="main-container">
+        <div class="carousel-nav">
+            <button id="prevBtn" class="nav-arrow">&lt;</button>
+            
+            <p id="ascii">
+          _____                    _____                    _____                    _____          
+         /\    \                  /\    \                  /\    \                  /\    \         
+        /::\    \                /::\    \                /::\    \                /::\____\        
+        \:::\    \              /::::\    \              /::::\    \              /:::/    /        
+         \:::\    \            /::::::\    \            /::::::\    \            /:::/    /         
+          \:::\    \          /:::/\:::\    \          /:::/\:::\    \          /:::/    /          
+           \:::\    \        /:::/__\:::\    \        /:::/  \:::\    \        /:::/____/           
+            \:::\    \      /::::\   \:::\    \      /:::/    \:::\    \      /::::\    \           
+             \:::\    \    /::::::\   \:::\    \    /:::/    / \:::\    \    /::::::\____\________  
+              \:::\    \  /:::/\:::\   \:::\    \  /:::/    /   \:::\    \  /:::/\:::::::::::\    \ 
+_______________\:::\____\/:::/  \:::\   \:::\____\/:::/____/     \:::\____\/:::/  |:::::::::::\____\
+\::::::::::::::::::/    /\::/    \:::\  /:::/    /\:::\    \      \::/    /\::/   |::|~~~|~~~~~     
+ \::::::::::::::::/____/  \/____/ \:::\/:::/    /  \:::\    \      \/____/  \/____|::|   |          
+  \:::\~~~~\~~~~~~                 \::::::/    /    \:::\    \                    |::|   |          
+   \:::\    \                       \::::/    /      \:::\    \                   |::|   |          
+    \:::\    \                      /:::/    /        \:::\    \                  |::|   |          
+     \:::\    \                    /:::/    /          \:::\    \                 |::|   |          
+      \:::\    \                  /:::/    /            \:::\    \                |::|   |          
+       \:::\____\                /:::/    /              \:::\____\               \::|   |          
+        \::/    /                \::/    /                \::/    /                \:|   |          
+         \/____/                  \/____/                  \/____/                  \|___|</p>
+            
+            <button id="nextBtn" class="nav-arrow">&gt;</button>
+        </div>
 
-    <div class="dropdown">
-        <button id="nameButton">▼ zack wilkinson</button>
-        <button id="projectsButton" class="dropdownButton">● projects</button>
-        <button id="aboutButton" class="dropdownButton">☺ about</button>
-    </div>
+        <div id="section-home" class="content-section active-section"></div>
 
-    <section class="leftContainer">
-        <p id="leftText">
-            Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science
-            at Stevens Institute of Technology. I'm interested in gaining experience through internship 
-            opportunities—primarily pertaining to software development, but I'm open to exploring any 
-            opportunities that will broaden my knowledge and better familiarize me with real-world work 
-            environments in the CS field.
-            <div class="contact">
+        <div id="section-projects" class="content-section">
+            <div id="projectButtonsContainer">
+                </div>
+            <div id="projectDetailsContainer"></div>
+        </div>
+
+        <div id="section-about" class="content-section">
+            <p class="bio-text">
+                Hi! I'm Zack Wilkinson, an undergraduate student studying Computer Science
+                at Stevens Institute of Technology. I'm interested in gaining experience through internship 
+                opportunities—primarily pertaining to software development, but I'm open to exploring any 
+                opportunities that will broaden my knowledge and better familiarize me with real-world work 
+                environments in the CS field.
+            </p>
+            <div class="contact-links">
                 <a href="mailto:zackjwilkinson@gmail.com">Email</a>
                 <a href="https://github.com/zackjwilk" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/zachary-wilkinson-589849309/" target="_blank">LinkedIn</a>
                 <a href="https://www.instagram.com/zackjwilk" target="_blank">Instagram</a>
             </div>
-        </p>
-        <!-- project buttons and details added here by js -->
-    </section>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
-    
+
 </html>
