@@ -1,111 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
 body {
-    width: 100vw;
-    height: 100vh;
-    margin: 0 auto;
     color: black;
     background: rgb(160, 180, 150);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+}
+
+/* main layout */
+.main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    gap: 2vh; /* space between logo and content */
 }
 
-.dropdown {
-    text-align: center;
-    width: 30%;
-    height: 10%;
-    border: 2px wavy black;
+/* carousel header */
+.carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.nav-arrow {
+    background: transparent;
+    border: none;
+    font-family: monospace;
+    font-size: 6vh;
+    font-weight: bold;
+    color: rgb(230, 100, 20);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s;
+}
+
+.nav-arrow:hover {
+    transform: scale(1.2);
+}
+
+.nav-arrow:active {
+    transform: scale(0.9);
 }
 
 #ascii {
-    height: 15vh;
     white-space: pre;
     font-family: monospace;
-    font-size: 2vh;
+    font-size: 0.7vw;
     font-weight: bold;
     line-height: 1.2;
-    margin-top: -20vh;
     color: rgb(230, 100, 20);
+    text-align: center;
 }
 
-button {
-    background-color: transparent;
-    border-color: transparent;
-    font-family: monospace;
-    font-size: 3.5vh;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.dropdownButton {
-    visibility: hidden;
-    height: 80%;
-    text-align: right;
-    font-size: 3.5vh;
-    padding-bottom: 1.5vh;
-}
-
-.dropdownButton::first-letter {
-    color: rgb(230, 100, 20);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 4vh;
-}
-
-#nameButton::first-letter {
-    color: rgb(230, 100, 20);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 4vh;
-}
-
-.leftContainer {
-    visibility: hidden;
-    position: absolute;
-    left: 5vw;
-    height: 80%;
-    width: 20%;
-    padding: 2vw;
+/* content sections */
+.content-section {
+    display: none; /* hidden by default */
+    width: 50vw;
+    max-height: 40vh;
     overflow-y: auto;
-    word-wrap: break-word;
-    font-family: monospace;
-    color: black;
-    font-size: 2.5vh;
+    text-align: left;
+    padding: 20px;
     border: 2px dashed rgb(230, 100, 20);
-}
-
-#leftText {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 3vh;
-}
-
-* {
-    scrollbar-color: rgb(230, 100, 20) transparent;
-}
-
-::-webkit-scrollbar-track {
     background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-    background: rgb(230, 100, 20);
+.active-section {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.contact {
-    position: absolute;
-    bottom: 2vh;
-    margin: 2vh;
+#section-home.active-section {
+    display: block;
+    border: none;
+    background: transparent;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* about section */
+.bio-text {
+    font-size: 2.2vh;
+    line-height: 1.5;
+    margin-bottom: 2vh;
+}
+
+.contact-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 a {
     color: rgb(230, 100, 20);
     font-weight: bold;
+    font-size: 2vh;
+    text-decoration: underline;
 }
 
+a:hover {
+    text-decoration: none;
+    background-color: rgb(170, 190, 160);
+}
+
+/* projects section */
+#projectButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.projectButton {
+    background: transparent;
+    border: 2px dashed rgb(230, 100, 20);
+    color: black;
+    padding: 15px;
+    font-size: 2.5vh;
+    font-family: monospace;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.projectButton:hover {
+    background-color: rgb(170, 190, 160);
+}
+
+#projectDetailsContainer {
+    margin-top: 20px;
+    font-size: 2vh;
+}
+
+#backButton {
+    background-color: transparent;
+    color: black;
+    border: 2px dashed rgb(230, 100, 20);
+    font-size: 5vh;
+    padding: 0 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#backButton:hover {
+    background-color: rgb(170, 190, 160);
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(230, 100, 20);
+}
+* {
+    scrollbar-color: rgb(230, 100, 20) transparent;
+}
+
+/* flashlight */
 #flashlight {
     position: absolute;
     width: 30%;
@@ -118,54 +197,18 @@ a {
 }
 
 #lightToggle {
-    position: absolute;
+    position: fixed;
     top: 2vh;
-    right: 1vw;
-    height: 10vh;
-    width: 5vw;
-    margin-top: 0;
+    right: 2vw;
+    height: 8vh;
+    width: auto;
     background-color: transparent;
     border: 0;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
 }
 
 #lightSwitch {
     height: 100%;
-}
-
-#projectButtonsContainer {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 0;
-}
-
-.projectButton {
-    border: 2px dashed rgb(230, 100, 20);
-    padding: 1.5vh;
-    font-size: 1.2vw;
-    height: auto;
-    text-align: left;
-    margin-bottom: 1vh;
-}
-
-.projectButton:hover {
-    background-color: rgb(170, 190, 160);
-}
-
-#projectDetailsContainer {
-    padding: 10px 0;
-    position: relative;
-    top: 0;
-}
-
-#backButton {
-    border: 2px dashed rgb(230, 100, 20);
-    padding: 0 3vh;
-    font-size: 5vh;
-    height: auto;
-    width: auto;
-}
-
-#backButton:hover {
-    background-color: rgb(170, 190, 160);
 }
