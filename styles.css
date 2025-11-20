@@ -129,13 +129,13 @@ a:hover {
 }
 
 /* projects section */
-#projectButtonsContainer {
+#projectBtnContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.projectButton {
+.projectBtn {
     background: transparent;
     border: 2px dashed rgb(230, 100, 20);
     color: black;
@@ -147,7 +147,7 @@ a:hover {
     width: 100%;
 }
 
-.projectButton:hover {
+.projectBtn:hover {
     background-color: rgb(170, 190, 160);
 }
 
@@ -156,7 +156,7 @@ a:hover {
     font-size: 2vh;
 }
 
-#backButton {
+#backBtn {
     background-color: transparent;
     color: black;
     border: 2px dashed rgb(230, 100, 20);
@@ -166,7 +166,7 @@ a:hover {
     cursor: pointer;
 }
 
-#backButton:hover {
+#backBtn:hover {
     background-color: rgb(170, 190, 160);
 }
 
