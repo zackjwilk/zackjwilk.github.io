@@ -2,9 +2,9 @@ const body = document.body;
 const flashlight = document.getElementById("flashlight");
 const lightToggle = document.getElementById("lightToggle");
 const lightSwitch = document.getElementById("lightSwitch");
-const asciiElement = document.getElementById('ascii');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+const asciiElement = document.getElementById("ascii");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
 // ascii art data
 const artZack = `
@@ -135,20 +135,20 @@ const projects = [
 ];
 
 // project rendering
-const projectButtonsContainer = document.getElementById("projectButtonsContainer");
+const projectBtnContainer = document.getElementById("projectBtnContainer");
 const projectDetailsContainer = document.getElementById("projectDetailsContainer");
 
 // generate buttons
 projects.forEach((project, index) => {
     const button = document.createElement("button");
-    button.className = "projectButton";
+    button.className = "projectBtn";
     button.textContent = `> ${project.name}`;
     button.addEventListener("click", () => showProjectDetails(index));
-    projectButtonsContainer.appendChild(button);
+    projectBtnContainer.appendChild(button);
 });
 
 function showProjectDetails(index) {
-    projectButtonsContainer.style.display = "none";
+    projectBtnContainer.style.display = "none";
     projectDetailsContainer.style.display = "block";
     
     projectDetailsContainer.innerHTML = `
@@ -156,13 +156,13 @@ function showProjectDetails(index) {
         <br>
         <p>${projects[index].description}</p>
         <br>
-        <button id="backButton">←</button>
+        <button id="backBtn">←</button>
     `;
 
-    document.getElementById("backButton").addEventListener("click", () => {
+    document.getElementById("backBtn").addEventListener("click", () => {
         projectDetailsContainer.style.display = "none";
         projectDetailsContainer.innerHTML = ''; // clear content
-        projectButtonsContainer.style.display = "flex";
+        projectBtnContainer.style.display = "flex";
     });
 }
 
@@ -191,7 +191,7 @@ lightToggle.addEventListener("click", function (event) {
 
         body.style.backgroundColor = "#111";
         body.style.color = "white";
-        asciiElement.style.color = "white"; // make ascii white in dark mode
+        asciiElement.style.color = "white";
         
         lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
