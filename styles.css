@@ -31,7 +31,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    gap: 2vh; /* space between logo and content */
+    gap: 2vh;
 }
 
 /* carousel header */
@@ -72,10 +72,9 @@ body {
     line-height: 1.2;
     color: rgb(230, 100, 20);
     text-align: center;
-    cursor: crosshair; /* Indicate interactivity */
+    cursor: crosshair;
 }
 
-/* New style for dynamically created character spans */
 .glitch-char {
     display: inline-block;
 }
