@@ -6,6 +6,183 @@ const asciiElement = document.getElementById("ascii");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// glitch effect
+const RANDOM_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=[]{}|;:,.<>?/~';
+const RADIUS = 1; // 1x1 radius means 3x3 area total (center + 1 in all directions)
+let charElements = []; // stores all individual <span> elements for current art
+let lastAffectedIndices = new Set(); // tracks indices affected in prev frame
+let charDimensions = { width: 0, height: 0, cols: 0, rows: 0 };
+let containerRect = null;
+let currentArtText = "";
+
+function getRandomChar() {
+    return RANDOM_CHARS[Math.floor(Math.random() * RANDOM_CHARS.length)];
+}
+
+function coordsToIndex(col, row) {
+    if (col < 0 || col >= charDimensions.cols || row < 0 || row >= charDimensions.rows) {
+        return -1; // out of bounds
+    }
+    return row * charDimensions.cols + col;
+}
+
+function restoreChar(index) {
+    if (index >= 0 && index < charElements.length) {
+        const charEl = charElements[index];
+        const originalChar = charEl.dataset.originalChar;
+
+        if (charEl.textContent !== originalChar) {
+            charEl.textContent = originalChar;
+        }
+    }
+}
+
+function calculateGrid() {
+    if (charElements.length === 0) return;
+
+    containerRect = asciiElement.getBoundingClientRect();
+
+    const firstCharRect = charElements[0]?.getBoundingClientRect();
+
+    if (firstCharRect) {
+        charDimensions.width = firstCharRect.width;
+        charDimensions.height = firstCharRect.height;
+    } else {
+        charDimensions.width = 0;
+        charDimensions.height = 0;
+    }
+    
+    // calc total columns and rows based on text structure
+    const lines = currentArtText.split('\n');
+    charDimensions.rows = lines.length;
+    // get max line length to determine cols
+    charDimensions.cols = lines.reduce((max, line) => Math.max(max, line.length), 0); 
+}
+
+function handleMouseMove(e) {
+    // recalc if dimensions are missing
+    if (!containerRect || charDimensions.width === 0 || charDimensions.height === 0) {
+        calculateGrid();
+        if (charDimensions.width === 0) return; 
+    }
+
+    if (!containerRect) {
+        calculateGrid();
+        return; 
+    }
+
+    // map mouse pixel coordinates to character coordinates (relative to container)
+    const mouseX = e.clientX - containerRect.left;
+    const mouseY = e.clientY - containerRect.top;
+
+    // calc central character column and row being hovered over
+    const centerCol = Math.floor(mouseX / charDimensions.width);
+    const centerRow = Math.floor(mouseY / charDimensions.height);
+
+    const currentAffectedIndices = new Set();
+    
+    // iterate thru radius (3x3 area)
+    for (let rowOffset = -RADIUS; rowOffset <= RADIUS; rowOffset++) {
+        for (let colOffset = -RADIUS; colOffset <= RADIUS; colOffset++) {
+            
+            const targetCol = centerCol + colOffset;
+            const targetRow = centerRow + rowOffset;
+            
+            const index = coordsToIndex(targetCol, targetRow);
+            
+            if (index !== -1) {
+                currentAffectedIndices.add(index);
+                const charEl = charElements[index];
+                const originalChar = charEl.dataset.originalChar; 
+
+                // only glitch if og char is NOT a space
+                if (originalChar !== ' ') {
+                    charEl.textContent = getRandomChar();
+                }
+            }
+        }
+    }
+    
+    // reset chars outside new radius
+    lastAffectedIndices.forEach(index => {
+        if (!currentAffectedIndices.has(index)) {
+            restoreChar(index);
+        }
+    });
+
+    lastAffectedIndices = currentAffectedIndices;
+}
+
+function handleMouseLeave() {
+    // reset all currently glitched chars when mouse leaves
+    lastAffectedIndices.forEach(index => {
+        restoreChar(index);
+    });
+    lastAffectedIndices.clear(); 
+}
+
+function initializeGlitchArt(artText, sectionName) {
+    
+    // clear listeners before replacing content
+    asciiElement.removeEventListener('mousemove', handleMouseMove);
+    asciiElement.removeEventListener('mouseleave', handleMouseLeave);
+    window.removeEventListener('resize', calculateGrid);
+
+    // reset indices set immediately
+    lastAffectedIndices.clear();
+
+    asciiElement.innerHTML = ''; 
+    charElements = [];
+
+    let lines = artText.split('\n');
+
+    if (lines.length > 0 && lines[0].trim() === '') lines.shift();
+    if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+    const rawLines = lines;
+    
+    if (rawLines.length === 0) return;
+    
+    currentArtText = rawLines.join('\n'); // update currentArtText with cleaned version
+
+    // calc max cols (width) based on all lines
+    charDimensions.cols = rawLines.reduce((max, line) => Math.max(max, line.length), 0); 
+    
+    const fragment = document.createDocumentFragment();
+
+    rawLines.forEach(line => {
+        // pad line with spaces to match max width for grid alignment
+        const paddedLine = line.padEnd(charDimensions.cols, ' '); 
+
+        for (let i = 0; i < paddedLine.length; i++) {
+            const char = paddedLine[i];
+            const span = document.createElement('span');
+            span.className = 'glitch-char';
+            span.textContent = char;
+            // store og char (including spaces)
+            span.dataset.originalChar = char; 
+            charElements.push(span);
+            fragment.appendChild(span);
+        }
+        fragment.appendChild(document.createElement('br'));
+    });
+
+    asciiElement.appendChild(fragment);
+
+    calculateGrid(); 
+    
+    // delayed call to recalc grid and bounding box
+    setTimeout(calculateGrid, 0); 
+    
+    // only attach listeners if the current section is home
+    if (sectionName === 'home') { 
+        asciiElement.addEventListener('mousemove', handleMouseMove);
+        asciiElement.addEventListener('mouseleave', handleMouseLeave);
+        window.addEventListener('resize', calculateGrid); 
+    }
+}
+
+
 // ascii art data
 const artZack = `
           _____                    _____                    _____                    _____          
@@ -30,22 +207,22 @@ _______________\\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\
         \\::/    /                \\::/    /                \\::/    /                \\:|   |          
          \\/____/                  \\/____/                  \\/____/                  \\|___|          `;
 
-const artProjects = `
- ____ ______ _____   ___ _____ _____ _____ _____ 
-| ___ \\ ___ \\  _  | |_  |  ___/  __ \\_   _/  ___|
-| |_/ / |_/ / | | |   | | |__ | /  \\/ | | \\ \`--. 
-|  __/|    /| | | |   | |  __|| |     | |  \`--. \\
-| |   | |\\ \\\\ \\_/ /\\__/ / |___| \\__/\\ | | /\\__/ /
-\\_|   \\_| \\_|\\___/\\____/\\____/ \\____/ \\_/ \\____/ 
-`;
-
 const artAbout = `
-  ___  ______  _____ _   _ _____ 
+  ___   _____  _____ _   _ _____ 
  / _ \\ | ___ \\|  _  | | | |_   _|
 / /_\\ \\| |_/ /| | | | | | | | |  
 |  _  || ___ \\| | | | | | | | |  
 | | | || |_/ /\\ \\_/ / |_| | | |  
 \\_| |_/\\____/  \\___/ \\___/  \\_/  
+`;
+
+const artProjects = `
+ ____ ______  _____   ___ _____ _____ _____ _____ 
+| ___ \\ ___ \\|  _  | |_  |  ___/  __ \\_   _/  ___|
+| |_/ / |_/ /| | | |   | | |__ | /  \\/ | | \\ \`--. 
+|  __/|    / | | | |   | |  __|| |     | |  \`--. \\
+| |   | |\\ \\ \\ \\_/ /\\__/ / |___| \\__/\\ | | /\\__/ /
+\\_|   \\_| \\_| \\___/\\____/\\____/ \\____/ \\_/ \\____/ 
 `;
 
 // carousel config
@@ -62,7 +239,7 @@ function updateUI() {
     const currentSection = sections[currentIndex];
     
     // update ascii
-    asciiElement.textContent = currentSection.art;
+    initializeGlitchArt(currentSection.art, currentSection.name);
 
     // manage content sections
     // hide all sections
@@ -191,7 +368,7 @@ lightToggle.addEventListener("click", function (event) {
 
         body.style.backgroundColor = "#111";
         body.style.color = "white";
-        asciiElement.style.color = "white";
+        asciiElement.style.color = "white"; 
         
         lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
@@ -203,7 +380,8 @@ lightToggle.addEventListener("click", function (event) {
         
         body.style.backgroundColor = "rgb(160, 180, 150)";
         body.style.color = "black";
-        asciiElement.style.color = "rgb(230, 100, 20)"; // revert ascii color
+        // Revert to original color
+        asciiElement.style.color = "rgb(230, 100, 20)"; 
         
         lightToggle.title = "Dark Mode";
         lightSwitch.src = "assets/light-on.png";
