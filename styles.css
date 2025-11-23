@@ -72,6 +72,12 @@ body {
     line-height: 1.2;
     color: rgb(230, 100, 20);
     text-align: center;
+    cursor: crosshair; /* Indicate interactivity */
+}
+
+/* New style for dynamically created character spans */
+.glitch-char {
+    display: inline-block;
 }
 
 /* content sections */
