@@ -7,13 +7,15 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 // glitch effect
-const RANDOM_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=[]{}|;:,.<>?/~';
+const RANDOM_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=[]{}|;:,.<>?/~";
 const RADIUS = 1; // 1x1 radius means 3x3 area total (center + 1 in all directions)
 let charElements = []; // stores all individual <span> elements for current art
 let lastAffectedIndices = new Set(); // tracks indices affected in prev frame
 let charDimensions = { width: 0, height: 0, cols: 0, rows: 0 };
 let containerRect = null;
 let currentArtText = "";
+let isGlitchActive = false;
+let animationFrameId = null; // stores requestAnimationFrame ID
 
 function getRandomChar() {
     return RANDOM_CHARS[Math.floor(Math.random() * RANDOM_CHARS.length)];
@@ -53,10 +55,35 @@ function calculateGrid() {
     }
     
     // calc total columns and rows based on text structure
-    const lines = currentArtText.split('\n');
+    const lines = currentArtText.split("\n");
     charDimensions.rows = lines.length;
     // get max line length to determine cols
     charDimensions.cols = lines.reduce((max, line) => Math.max(max, line.length), 0); 
+}
+
+function glitchLoop() {
+    // check if loop should still be active (mouse is hovering)
+    if (!isGlitchActive) {
+        // stop loop if mouse left
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+        return;
+    }
+
+    lastAffectedIndices.forEach(index => {
+        if (index !== -1) {
+            const charEl = charElements[index];
+            const originalChar = charEl.dataset.originalChar; 
+
+            // only glitch if og char is NOT a space
+            if (originalChar !== ' ') {
+                charEl.textContent = getRandomChar();
+            }
+        }
+    });
+    
+    // request next frame
+    animationFrameId = requestAnimationFrame(glitchLoop);
 }
 
 function handleMouseMove(e) {
@@ -92,13 +119,6 @@ function handleMouseMove(e) {
             
             if (index !== -1) {
                 currentAffectedIndices.add(index);
-                const charEl = charElements[index];
-                const originalChar = charEl.dataset.originalChar; 
-
-                // only glitch if og char is NOT a space
-                if (originalChar !== ' ') {
-                    charEl.textContent = getRandomChar();
-                }
             }
         }
     }
@@ -111,6 +131,12 @@ function handleMouseMove(e) {
     });
 
     lastAffectedIndices = currentAffectedIndices;
+    
+    // Start the continuous loop if it's not running
+    if (!isGlitchActive) {
+        isGlitchActive = true;
+        animationFrameId = requestAnimationFrame(glitchLoop);
+    }
 }
 
 function handleMouseLeave() {
@@ -119,31 +145,41 @@ function handleMouseLeave() {
         restoreChar(index);
     });
     lastAffectedIndices.clear(); 
+    
+    // Stop the continuous loop
+    isGlitchActive = false;
 }
 
 function initializeGlitchArt(artText, sectionName) {
     
     // clear listeners before replacing content
-    asciiElement.removeEventListener('mousemove', handleMouseMove);
-    asciiElement.removeEventListener('mouseleave', handleMouseLeave);
-    window.removeEventListener('resize', calculateGrid);
+    asciiElement.removeEventListener("mousemove", handleMouseMove);
+    asciiElement.removeEventListener("mouseleave", handleMouseLeave);
+    window.removeEventListener("resize", calculateGrid);
 
+    // stop loop if it's running
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+    isGlitchActive = false;
+    
     // reset indices set immediately
     lastAffectedIndices.clear();
 
-    asciiElement.innerHTML = ''; 
+    asciiElement.innerHTML = ""; 
     charElements = [];
 
-    let lines = artText.split('\n');
+    let lines = artText.split("\n");
 
-    if (lines.length > 0 && lines[0].trim() === '') lines.shift();
-    if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+    if (lines.length > 0 && lines[0].trim() === "") lines.shift();
+    if (lines.length > 0 && lines[lines.length - 1].trim() === "") lines.pop();
 
     const rawLines = lines;
     
     if (rawLines.length === 0) return;
     
-    currentArtText = rawLines.join('\n'); // update currentArtText with cleaned version
+    currentArtText = rawLines.join("\n"); // update currentArtText with cleaned version
 
     // calc max cols (width) based on all lines
     charDimensions.cols = rawLines.reduce((max, line) => Math.max(max, line.length), 0); 
@@ -152,19 +188,19 @@ function initializeGlitchArt(artText, sectionName) {
 
     rawLines.forEach(line => {
         // pad line with spaces to match max width for grid alignment
-        const paddedLine = line.padEnd(charDimensions.cols, ' '); 
+        const paddedLine = line.padEnd(charDimensions.cols, " "); 
 
         for (let i = 0; i < paddedLine.length; i++) {
             const char = paddedLine[i];
-            const span = document.createElement('span');
-            span.className = 'glitch-char';
+            const span = document.createElement("span");
+            span.className = "glitch-char";
             span.textContent = char;
             // store og char (including spaces)
             span.dataset.originalChar = char; 
             charElements.push(span);
             fragment.appendChild(span);
         }
-        fragment.appendChild(document.createElement('br'));
+        fragment.appendChild(document.createElement("br"));
     });
 
     asciiElement.appendChild(fragment);
@@ -175,10 +211,10 @@ function initializeGlitchArt(artText, sectionName) {
     setTimeout(calculateGrid, 0); 
     
     // only attach listeners if the current section is home
-    if (sectionName === 'home') { 
-        asciiElement.addEventListener('mousemove', handleMouseMove);
-        asciiElement.addEventListener('mouseleave', handleMouseLeave);
-        window.addEventListener('resize', calculateGrid); 
+    if (sectionName === "home") { 
+        asciiElement.addEventListener("mousemove", handleMouseMove);
+        asciiElement.addEventListener("mouseleave", handleMouseLeave);
+        window.addEventListener("resize", calculateGrid); 
     }
 }
 
@@ -207,15 +243,6 @@ _______________\\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\
         \\::/    /                \\::/    /                \\::/    /                \\:|   |          
          \\/____/                  \\/____/                  \\/____/                  \\|___|          `;
 
-const artAbout = `
-  ___   _____  _____ _   _ _____ 
- / _ \\ | ___ \\|  _  | | | |_   _|
-/ /_\\ \\| |_/ /| | | | | | | | |  
-|  _  || ___ \\| | | | | | | | |  
-| | | || |_/ /\\ \\_/ / |_| | | |  
-\\_| |_/\\____/  \\___/ \\___/  \\_/  
-`;
-
 const artProjects = `
  ____ ______  _____   ___ _____ _____ _____ _____ 
 | ___ \\ ___ \\|  _  | |_  |  ___/  __ \\_   _/  ___|
@@ -225,11 +252,20 @@ const artProjects = `
 \\_|   \\_| \\_| \\___/\\____/\\____/ \\____/ \\_/ \\____/ 
 `;
 
+const artAbout = `
+  ___   _____  _____ _   _ _____ 
+ / _ \\ | ___ \\|  _  | | | |_   _|
+/ /_\\ \\| |_/ /| | | | | | | | |  
+|  _  || ___ \\| | | | | | | | |  
+| | | || |_/ /\\ \\_/ / |_| | | |  
+\\_| |_/\\____/  \\___/ \\___/  \\_/  
+`;
+
 // carousel config
 const sections = [
-    { name: 'home', art: artZack },
-    { name: 'about', art: artAbout },
-    { name: 'projects', art: artProjects }
+    { name: "home", art: artZack },
+    { name: "about", art: artAbout },
+    { name: "projects", art: artProjects }
 ];
 
 let currentIndex = 0;
@@ -243,23 +279,23 @@ function updateUI() {
 
     // manage content sections
     // hide all sections
-    document.querySelectorAll('.content-section').forEach(el => {
-        el.classList.remove('active-section');
+    document.querySelectorAll(".content-section").forEach(el => {
+        el.classList.remove("active-section");
     });
 
     // show current section
     const activeContent = document.getElementById(`section-${currentSection.name}`);
     if (activeContent) {
-        activeContent.classList.add('active-section');
+        activeContent.classList.add("active-section");
     }
 }
 
-prevBtn.addEventListener('click', () => {
+prevBtn.addEventListener("click", () => {
     currentIndex = (currentIndex === 0) ? sections.length - 1 : currentIndex - 1;
     updateUI();
 });
 
-nextBtn.addEventListener('click', () => {
+nextBtn.addEventListener("click", () => {
     currentIndex = (currentIndex === sections.length - 1) ? 0 : currentIndex + 1;
     updateUI();
 });
@@ -338,7 +374,7 @@ function showProjectDetails(index) {
 
     document.getElementById("backBtn").addEventListener("click", () => {
         projectDetailsContainer.style.display = "none";
-        projectDetailsContainer.innerHTML = ''; // clear content
+        projectDetailsContainer.innerHTML = ""; // clear content
         projectBtnContainer.style.display = "flex";
     });
 }
@@ -368,6 +404,7 @@ lightToggle.addEventListener("click", function (event) {
 
         body.style.backgroundColor = "#111";
         body.style.color = "white";
+        // When in dark mode, we want the glitch characters to be visible (white)
         asciiElement.style.color = "white"; 
         
         lightToggle.title = "Light Mode";
