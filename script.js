@@ -302,6 +302,23 @@ nextBtn.addEventListener("click", () => {
 
 // project data
 const projects = [
+        { name: "Canvasgotchi", description: `Canvasgotchi is a browser pet that relies on you completing your assignments!
+                        <br><br>
+                        Canvasgotchi is a Google Chrome extension created using HTML, CSS, and JavaScript. It interacts with
+                        Canvas's API to check the user's assignments and due dates, displaying the number of assignments due in
+                        the next week on a widget below the pet. The pet has several states based on the number of assignments due.
+                        If there are no assignments due it plays a sleeping animation, if there's 1-4 assignments due he smiles, and
+                        if there are 5 or more assignments due he jumps up and down urging the user the complete an assignment.
+                        <br><br>
+                        This project began as a Python script, but after showing it to a few friends who showed interest in using it
+                        themselves, I decided to shift to creating a Chrome extension (something I had never done before despite having
+                        worked in HTML, CSS, and JavaScript). I then posted a video of this project on Instagram and received a lot of 
+                        support, as well as requests to create versions that can be used on Firefox or with other LMS's like Moodle. 
+                        Because of the attention that these requests received, I plan to create a Firefox version first and then look into 
+                        developing compatability for Moodle and Blackboard.
+                        <br><br>
+                        WATCH DEMO <a href="https://www.instagram.com/p/DRiAdFIjlxn/" target="_blank">HERE</a>`,
+                    link: "https://chromewebstore.google.com/detail/lllfdbnlmbikgdbpemmnabmmhdbfodkl?utm_source=item-share-cb" },
     { name: "sound-bending", description: `sound-bending allows you to use your hand movements to record vocal loops and add effects 
                         into FL Studio in real-time with your webcam!
                         <br><br>
