@@ -304,7 +304,7 @@ nextBtn.addEventListener("click", () => {
 const projects = [
         { name: "Canvasgotchi", description: `Canvasgotchi is a browser pet that relies on you completing your assignments!
                         <br><br>
-                        Canvasgotchi is a Google Chrome extension created using HTML, CSS, and JavaScript. It interacts with
+                        Canvasgotchi is an extension for Google Chrome and Firefox created using HTML, CSS, and JavaScript. It interacts with
                         Canvas's API to check the user's assignments and due dates, displaying the number of assignments due in
                         the next week on a widget below the pet. The pet has several states based on the number of assignments due.
                         If there are no assignments due it plays a sleeping animation, if there's 1-4 assignments due he smiles, and
@@ -314,7 +314,7 @@ const projects = [
                         themselves, I decided to shift to creating a Chrome extension (something I had never done before despite having
                         worked in HTML, CSS, and JavaScript). I then posted a video of this project on Instagram and received a lot of 
                         support, as well as requests to create versions that can be used on Firefox or with other LMS's like Moodle. 
-                        Because of the attention that these requests received, I plan to create a Firefox version first and then look into 
+                        Because of the attention that these requests received, I created a Firefox version first and plan to look into 
                         developing compatability for Moodle and Blackboard.
                         <br><br>
                         WATCH DEMO <a href="https://www.instagram.com/p/DRiAdFIjlxn/" target="_blank">HERE</a>`,
@@ -446,3 +446,4 @@ lightToggle.addEventListener("click", function (event) {
 
 // init ui
 updateUI();
+
