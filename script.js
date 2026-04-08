@@ -110,8 +110,9 @@ function handleMouseMove(e) {
     
     // iterate thru radius (3x3 area)
     for (let rowOffset = -RADIUS; rowOffset <= RADIUS; rowOffset++) {
-        for (let colOffset = -RADIUS; colOffset <= RADIUS; colOffset++) {
-            
+        for (let colOffset = -RADIUS-1; colOffset <= RADIUS+1; colOffset++) {
+            // ^ added -1 and +1 cause for some reason glitch effect wasnt actually
+            //   a square even though on god the font is monospace
             const targetCol = centerCol + colOffset;
             const targetRow = centerRow + rowOffset;
             
@@ -131,8 +132,7 @@ function handleMouseMove(e) {
     });
 
     lastAffectedIndices = currentAffectedIndices;
-    
-    // Start the continuous loop if it's not running
+
     if (!isGlitchActive) {
         isGlitchActive = true;
         animationFrameId = requestAnimationFrame(glitchLoop);
@@ -145,8 +145,7 @@ function handleMouseLeave() {
         restoreChar(index);
     });
     lastAffectedIndices.clear(); 
-    
-    // Stop the continuous loop
+
     isGlitchActive = false;
 }
 
@@ -446,4 +445,3 @@ lightToggle.addEventListener("click", function (event) {
 
 // init ui
 updateUI();
-
