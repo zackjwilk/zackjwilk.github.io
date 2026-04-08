@@ -376,6 +376,8 @@ projects.forEach((project, index) => {
     projectBtnContainer.appendChild(button);
 });
 
+const projBtns = document.querySelectorAll(".projectBtn")
+
 function showProjectDetails(index) {
     projectBtnContainer.style.display = "none";
     projectDetailsContainer.style.display = "block";
@@ -420,8 +422,14 @@ lightToggle.addEventListener("click", function (event) {
 
         body.style.backgroundColor = "#111";
         body.style.color = "white";
-        // When in dark mode, we want the glitch characters to be visible (white)
-        asciiElement.style.color = "white"; 
+        asciiElement.style.color = "white";
+        projBtns.forEach(btn => {
+            btn.style.color = "white";
+        });
+
+        // handle hover bg colors
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
         
         lightToggle.title = "Light Mode";
         lightSwitch.src = "assets/light-off.png";
@@ -433,8 +441,14 @@ lightToggle.addEventListener("click", function (event) {
         
         body.style.backgroundColor = "rgb(160, 180, 150)";
         body.style.color = "black";
-        // Revert to original color
-        asciiElement.style.color = "rgb(230, 100, 20)"; 
+        asciiElement.style.color = "rgb(230, 100, 20)";
+        projBtns.forEach(btn => {
+            btn.style.color = "black";
+        });
+
+        // handle hover bg colors
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
         
         lightToggle.title = "Dark Mode";
         lightSwitch.src = "assets/light-on.png";
@@ -445,3 +459,6 @@ lightToggle.addEventListener("click", function (event) {
 
 // init ui
 updateUI();
+
+// default mode
+body.classList.add("light-mode");
