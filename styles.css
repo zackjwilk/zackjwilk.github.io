@@ -128,11 +128,6 @@ a {
     text-decoration: underline;
 }
 
-a:hover {
-    text-decoration: none;
-    background-color: rgb(170, 190, 160);
-}
-
 /* projects section */
 #projectBtnContainer {
     display: flex;
@@ -152,10 +147,6 @@ a:hover {
     width: 100%;
 }
 
-.projectBtn:hover {
-    background-color: rgb(170, 190, 160);
-}
-
 #projectDetailsContainer {
     margin-top: 20px;
     font-size: 2vh;
@@ -169,10 +160,6 @@ a:hover {
     padding: 0 30px;
     margin-top: 20px;
     cursor: pointer;
-}
-
-#backBtn:hover {
-    background-color: rgb(170, 190, 160);
 }
 
 /* scrollbar */
@@ -216,4 +203,16 @@ a:hover {
 
 #lightSwitch {
     height: 100%;
+}
+
+body.dark-mode a:hover,
+body.dark-mode .projectBtn:hover,
+body.dark-mode #backBtn:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+body.light-mode a:hover,
+body.light-mode .projectBtn:hover,
+body.light-mode #backBtn:hover {
+    background-color: rgb(170, 190, 160);
 }
