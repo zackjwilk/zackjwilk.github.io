@@ -217,7 +217,6 @@ function initializeGlitchArt(artText, sectionName) {
     }
 }
 
-
 // ascii art data
 const artZack = `
           _____                    _____                    _____                    _____          
@@ -242,15 +241,6 @@ _______________\\:::\\____\\/:::/  \\:::\\   \\:::\\____\\/:::/____/     \\:::\\
         \\::/    /                \\::/    /                \\::/    /                \\:|   |          
          \\/____/                  \\/____/                  \\/____/                  \\|___|          `;
 
-const artProjects = `
- ____ ______  _____   ___ _____ _____ _____ _____ 
-| ___ \\ ___ \\|  _  | |_  |  ___/  __ \\_   _/  ___|
-| |_/ / |_/ /| | | |   | | |__ | /  \\/ | | \\ \`--. 
-|  __/|    / | | | |   | |  __|| |     | |  \`--. \\
-| |   | |\\ \\ \\ \\_/ /\\__/ / |___| \\__/\\ | | /\\__/ /
-\\_|   \\_| \\_| \\___/\\____/\\____/ \\____/ \\_/ \\____/ 
-`;
-
 const artAbout = `
   ___   _____  _____ _   _ _____ 
  / _ \\ | ___ \\|  _  | | | |_   _|
@@ -260,11 +250,30 @@ const artAbout = `
 \\_| |_/\\____/  \\___/ \\___/  \\_/  
 `;
 
+const artProjects = `
+ ____ ______  _____   ___ _____ _____ _____ _____ 
+| ___ \\ ___ \\|  _  | |_  |  ___/  __ \\_   _/  ___|
+| |_/ / |_/ /| | | |   | | |__ | /  \\/ | | \\ \`--. 
+|  __/|    / | | | |   | |  __|| |     | |  \`--. \\
+| |   | |\\ \\ \\ \\_/ /\\__/ / |___| \\__/\\ | | /\\__/ /
+\\_|   \\_| \\_| \\___/\\____/\\____/ \\____/ \\_/ \\____/ 
+`;
+
+const artMisc = `
+ _   _ _____  _____  _____
+| \\_/ |_   _|/  ___|/  __ \\
+|     | | |  \\ \`--. | /  \\/
+| |_| | | |   \`--. \\| |
+| | | |_| |_ /\\__/ /| \\__/\\ __
+\\_| |_/_____|\\____/  \\____/|__|
+`;
+
 // carousel config
 const sections = [
     { name: "home", art: artZack },
     { name: "about", art: artAbout },
-    { name: "projects", art: artProjects }
+    { name: "projects", art: artProjects },
+    { name: "misc", art: artMisc}
 ];
 
 let currentIndex = 0;
@@ -397,6 +406,52 @@ function showProjectDetails(index) {
     });
 }
 
+// load misc images
+const miscImages = [
+    "assets/misc/rave.png",
+    "assets/misc/3dolla.jpeg",
+    "assets/misc/ear.png",
+    "assets/misc/lean.jpeg",
+    "assets/misc/ride.jpeg"
+]
+
+function initMisc() {
+    const miscSection = document.getElementById("section-misc");
+    miscSection.innerHTML = ""; // clear if re-called
+
+    const grid = document.createElement("div");
+    grid.className = "misc-grid";
+
+    miscImages.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.className = "misc-img";
+        img.addEventListener("click", () => openLightbox(src));
+        grid.appendChild(img);
+    });
+
+    miscSection.appendChild(grid);
+}
+
+function openLightbox(src) {
+    const overlay = document.createElement("div");
+    overlay.id = "lightbox-overlay";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.id = "lightbox-img";
+
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    // clicking overlay (but not image) closes it
+    overlay.addEventListener("click", (e) => {
+        if (e.target !== img) {
+            overlay.remove();
+        }
+    });
+}
+
 // flashlight logic
 flashlight.ondragstart = function () { return false; };
 
@@ -458,6 +513,7 @@ lightToggle.addEventListener("click", function (event) {
 });
 
 // init ui
+initMisc();
 updateUI();
 
 // default mode
