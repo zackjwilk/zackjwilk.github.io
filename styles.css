@@ -162,6 +162,42 @@ a {
     cursor: pointer;
 }
 
+.misc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 10px;
+}
+
+.misc-img {
+    width: 100%;
+    object-fit: contain;
+    border: 2px dashed rgb(230, 100, 20);
+    cursor: pointer;
+    transition: transform 0.07s ease-out;
+}
+
+.misc-img:hover {
+    transform: scale(1.08, 1.08);
+}
+
+#lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    cursor: pointer;
+}
+
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    cursor: default;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
