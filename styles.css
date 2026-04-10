@@ -173,11 +173,11 @@ a {
     object-fit: contain;
     border: 2px dashed rgb(230, 100, 20);
     cursor: pointer;
-    transition: transform 0.07s ease-out;
+    transition: transform 0.08s ease-out;
 }
 
 .misc-img:hover {
-    transform: scale(1.08, 1.08);
+    transform: scale(1.05, 1.05);
 }
 
 #lightbox-overlay {
