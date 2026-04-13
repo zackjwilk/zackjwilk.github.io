@@ -172,7 +172,7 @@ a {
     width: 100%;
     object-fit: contain;
     border: 2px dashed rgb(230, 100, 20);
-    padding: 3px;
+    padding: 2px;
     cursor: pointer;
     transition: transform 0.08s ease-out;
 }
