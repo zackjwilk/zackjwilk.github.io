@@ -493,12 +493,11 @@ lightToggle.addEventListener("click", function (event) {
     } else {
         // light mode on
         flashlight.style.visibility = "hidden";
-        
-        body.style.backgroundColor = "rgb(160, 180, 150)";
-        body.style.color = "black";
-        asciiElement.style.color = "rgb(230, 100, 20)";
+        body.style.backgroundColor = "rgb(35, 0, 245)";
+        body.style.color = "white";
+        asciiElement.style.color = "white";
         projBtns.forEach(btn => {
-            btn.style.color = "black";
+            btn.style.color = "white";
         });
 
         // handle hover bg colors
@@ -518,3 +517,129 @@ updateUI();
 
 // default mode
 body.classList.add("light-mode");
+
+// ascii border
+(function () {
+    const canvas = document.getElementById("borderCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const FONT_SIZE = 14;
+    const FONT = `bold ${FONT_SIZE}px monospace`;
+
+    const HORIZ = "-";
+    const VERT = "|";
+    const CORNER = "*";
+    const DOT = "o";
+
+    // inset: how many cells in from the actual viewport edge the border sits
+    const INSET_X = 2; // left & right
+    const INSET_Y = 1; // top & bottom (fewer rows needed since cellH > cellW)
+
+    // speed (frames per advance)
+    const SPEED_HORIZ = 1; // top & bottom
+    const SPEED_VERT = 2; // left & right
+
+    let cols, rows, totalCells, cellW, cellH;
+    let dotPos = 0, frame = 0;
+
+    const lightToggleEl = document.getElementById("lightToggle");
+    const TOGGLE_MARGIN = 8;
+
+    function positionLightToggle() {
+        const borderRight = INSET_X * cellW + cols * cellW;
+        lightToggleEl.style.right = (window.innerWidth - borderRight + cellW * 0.5 + TOGGLE_MARGIN) + "px";
+        lightToggleEl.style.top = (INSET_Y * cellH + cellH * 0.5 + TOGGLE_MARGIN) + "px";
+    }
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.font = FONT;
+        cellW = ctx.measureText("M").width;
+        cellH = FONT_SIZE * 1.2;
+        // drawable grid (inset on all sides)
+        cols = Math.floor(canvas.width / cellW) - INSET_X * 2;
+        rows = Math.floor(canvas.height / cellH) - INSET_Y * 2;
+        totalCells = 2 * (cols + rows) - 4;
+        canvas.dataset.cellW = cellW;
+        canvas.dataset.cellH = cellH;
+        // clamp dotPos in case it went out of range after resize
+        dotPos = dotPos % totalCells;
+        positionLightToggle();
+    }
+
+    function getBorderColor() {
+        return document.body.style.color || "white";
+    }
+
+    // returns [col, row] relative to inset origin, for perimeter index i
+    function getPos(i) {
+        const c = cols - 1, r = rows - 1;
+        if (i < cols) {
+            return [i, 0];                          // top
+        } else if (i < cols + r) {
+            return [c, i - cols + 1];               // right
+        } else if (i < cols + r + c) {
+            return [c - (i - cols - r + 1), r];     // bottom
+        } else {
+            return [0, r - (i - cols - r - c + 1)]; // left
+        }
+    }
+
+    // returns true if perimeter index i is on a horizontal edge (top or bottom)
+    function isHorizEdge(i) {
+        // top: 0..(cols-1),  bottom: (cols+rows-2)..(2*cols+rows-3)
+        return i < cols || (i >= cols + rows - 2 && i < 2 * cols + rows - 2);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cellW = parseFloat(canvas.dataset.cellW) || FONT_SIZE * 0.6;
+        const cellH = parseFloat(canvas.dataset.cellH) || FONT_SIZE * 1.2;
+        const offsetX = INSET_X * cellW;
+        const offsetY = INSET_Y * cellH;
+
+        ctx.font = FONT;
+        ctx.fillStyle = getBorderColor();
+        ctx.textBaseline = "top";
+
+        const dotIdx = Math.floor(dotPos) % totalCells;
+
+        for (let i = 0; i < totalCells; i++) {
+            const [col, row] = getPos(i);
+            let ch;
+
+            if ((col === 0 && row === 0) ||
+                (col === cols-1 && row === 0) ||
+                (col === cols-1 && row === rows-1) ||
+                (col === 0 && row === rows-1)) {
+                ch = CORNER;
+            } else if (row === 0 || row === rows - 1) {
+                ch = HORIZ;
+            } else {
+                ch = VERT;
+            }
+
+            if (i === dotIdx) ch = DOT;
+
+            ctx.fillText(ch, offsetX + col * cellW, offsetY + row * cellH);
+        }
+    }
+
+    function tick() {
+        frame++;
+        const currentIdx = Math.floor(dotPos) % totalCells;
+        // choose speed based on which edge the dot is currently on
+        const speed = isHorizEdge(currentIdx) ? SPEED_HORIZ : SPEED_VERT;
+        if (frame % speed === 0) {
+            dotPos = (dotPos + 1) % totalCells;
+        }
+        draw();
+        requestAnimationFrame(tick);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    tick();
+})();
