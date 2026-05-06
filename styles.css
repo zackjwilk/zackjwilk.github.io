@@ -14,8 +14,9 @@ html, body {
 }
 
 body {
-    color: black;
-    background: rgb(160, 180, 150);
+    /*color: black;*/
+    color: white;
+    background: blue;
     position: relative;
     display: flex;
     align-items: center;
@@ -50,7 +51,7 @@ body {
     font-family: monospace;
     font-size: 6vh;
     font-weight: bold;
-    color: rgb(230, 100, 20);
+    color: white;
     cursor: pointer;
     user-select: none;
     transition: transform 0.1s;
@@ -70,7 +71,7 @@ body {
     font-size: 0.7vw;
     font-weight: bold;
     line-height: 1.2;
-    color: rgb(230, 100, 20);
+    color: white;
     text-align: center;
     cursor: crosshair;
 }
@@ -87,7 +88,7 @@ body {
     overflow-y: auto;
     text-align: left;
     padding: 20px;
-    border: 2px dashed rgb(230, 100, 20);
+    border: 2px dashed white;
     background: transparent;
 }
 
@@ -122,7 +123,7 @@ body {
 }
 
 a {
-    color: rgb(230, 100, 20);
+    color: white;
     font-weight: bold;
     font-size: 2vh;
     text-decoration: underline;
@@ -137,8 +138,8 @@ a {
 
 .projectBtn {
     background: transparent;
-    border: 2px dashed rgb(230, 100, 20);
-    color: black;
+    border: 2px dashed white;
+    color: white;
     padding: 15px;
     font-size: 2.5vh;
     font-family: monospace;
@@ -154,8 +155,8 @@ a {
 
 #backBtn {
     background-color: transparent;
-    color: black;
-    border: 2px dashed rgb(230, 100, 20);
+    color: white;
+    border: 2px dashed white;
     font-size: 5vh;
     padding: 0 30px;
     margin-top: 20px;
@@ -171,7 +172,7 @@ a {
 .misc-img {
     width: 100%;
     object-fit: contain;
-    border: 2px dashed rgb(230, 100, 20);
+    border: 2px dashed white;
     padding: 2px;
     cursor: pointer;
     transition: transform 0.08s ease-out;
@@ -207,10 +208,22 @@ a {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgb(230, 100, 20);
+    background: white;
 }
 * {
-    scrollbar-color: rgb(230, 100, 20) transparent;
+    scrollbar-color: white transparent;
+}
+
+/* animated ascii border */
+#borderCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    font-family: monospace;
 }
 
 /* flashlight */
@@ -227,8 +240,6 @@ a {
 
 #lightToggle {
     position: fixed;
-    top: 2vh;
-    right: 2vw;
     height: 8vh;
     width: auto;
     background-color: transparent;
@@ -251,5 +262,5 @@ body.dark-mode #backBtn:hover {
 body.light-mode a:hover,
 body.light-mode .projectBtn:hover,
 body.light-mode #backBtn:hover {
-    background-color: rgb(170, 190, 160);
+    background-color: rgb(60, 40, 220);
 }
