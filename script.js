@@ -621,7 +621,12 @@ body.classList.add("light-mode");
                 ch = VERT;
             }
 
-            if (i === dotIdx) ch = DOT;
+            // ignore dot if landing on corner
+            const isCorner = (col === 0 && row === 0) ||
+                 (col === cols-1 && row === 0) ||
+                 (col === cols-1 && row === rows-1) ||
+                 (col === 0 && row === rows-1);
+            if (i === dotIdx && !isCorner) ch = DOT;
 
             ctx.fillText(ch, offsetX + col * cellW, offsetY + row * cellH);
         }
